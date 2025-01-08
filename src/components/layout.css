@@ -1,0 +1,24 @@
+#main-bar {
+    flex-grow: 3;
+    /* border: 1px solid white; */
+}
+
+#right-bar, #left-bar {
+    flex-grow: 1;
+    max-width: 20vw;
+    min-width: 20vw;
+    
+}
+
+#main-bar, #left-bar, #right-bar {
+    padding: 0px 16px;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#header{
+    max-height: 7vh;
+    min-height: 7vh;
+    background-color: black;
+}
