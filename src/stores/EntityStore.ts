@@ -30,7 +30,7 @@ const setTextareaText = (set: any, index: number, text: string) => {
 
 // plotter logic
 const pushPlotter = (set: any) => {
-    set((state: any) => ({ entities: [...state.entities, {type: "plotter"}] }));
+    set((state: any) => ({ entities: [...state.entities, {type: "plotter", data: ""}] }));
 }
 
 /* 
