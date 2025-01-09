@@ -7,8 +7,8 @@ import ItemSelector from "./widgets/ItemSelector";
 function LeftBar() {
     return (
         <div id="left-bar">
-            <WidgetWrapper Child={Calculator} title="Calculator" />
-            <WidgetWrapper Child={ItemSelector} title="Items Picker" />
+            <WidgetWrapper Child={ItemSelector} title="Items Picker" opened={true} />
+            <WidgetWrapper Child={Calculator} title="Calculator" opened={false} />
         </div>
     )
 }

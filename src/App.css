@@ -16,3 +16,24 @@ body {
   max-height: 100vh;
   overflow-y: hidden;
 }
+
+
+/* scrollbar css */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(27,27,27);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #333333;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #525252;
+}

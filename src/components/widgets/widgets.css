@@ -13,6 +13,7 @@
     border-radius: 50px;
     border: none;
     background: #171717;
+    cursor: pointer;
 }
 
 .widget-wrapper-header {
@@ -21,14 +22,39 @@
     padding: 10px 20px;
     background-color: #1e1e1e;
     border-radius: 4px 4px 0px 0px;
+    opacity: 0.85;
 }
 
 .widget-wrapper {
     border: 1px solid #1e1e1e;
     border-radius: 4px;
+    margin-bottom: 1.5rem;
 }
 
 
+
+/* item selector starts */
+
+#picker-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#picker-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 100%; */
+    background: rgb(27 27 27);
+    padding: 10px 25px;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+
+
+/* item selector ends */
 
 
 

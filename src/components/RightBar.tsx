@@ -6,7 +6,7 @@ import MembersList from "./widgets/MembersList";
 function RightBar() {
     return (
         <div id="right-bar">
-            <WidgetWrapper Child={MembersList} title="Members List" />
+            <WidgetWrapper Child={MembersList} title="Members List" opened={true} />
         </div>
     )
 }

@@ -1,17 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Tesseract from 'tesseract.js';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
+import useEntityStore from "../../stores/EntityStore";
 // import preprocessImage from "../../utils/preprocess";
 
 import "./entities.css";
 
-const TextEditor = () => {
+type props = {
+    index: number
+};  
+
+const TextEditor = ({index}: props) => {
     const [image, setImage] = useState("");
-    const [text, setText] = useState("");
     const [floater, setFloater] = useState<boolean>(false);
     // const canvasRef = useRef<any>(null);
     // const imageRef = useRef<any>(null);
+
+    const setTextareaText = useEntityStore((state: any) => state.setTextareaText);
+    const text = useEntityStore((state: any) => state.entities[index].text);
+
+    const {
+        transcript,
+        listening,
+        // resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+
+      if (!browserSupportsSpeechRecognition) {
+        return <span>Browser doesn't support speech recognition.</span>;
+      }
+
+    const handleMicChange = () => {
+        if(!listening) { SpeechRecognition.startListening({continuous: true}) }
+        else { SpeechRecognition.stopListening() }
+    }
     
+    useEffect(() => {
+        setTextareaText(index, transcript);
+    }, [transcript])
+
     const handleChange = (event: any) => {
         setImage(URL.createObjectURL(event.target.files[0]))
     }
@@ -36,7 +64,7 @@ const TextEditor = () => {
                             );
             let text : any = result?.data.text
 
-            setText(text);
+            setTextareaText(index, text);
             console.log(result);
         } catch (error) {
             console.log(error);
@@ -45,29 +73,31 @@ const TextEditor = () => {
     }
 
   return (
-    <div>
+    <div className="mb-2">
         <div className="text-editor-top-bar top-bar">
             <div className="entitiy-title">
                 Text Editor
             </div>
             <div className="entity-tools">
                 <div className="clip-wrapper">
-                <div className="floater" style={{display: floater ? "block" : "none"}}>
-                    <input type="file" onChange={handleChange} />
-                    <button onClick={handleClick} style={{height:50}}>Convert to text</button>
-                </div>
-                <button onClick={() => setFloater(prev => !prev)}>clip</button>
+                    <div className="floater" style={{display: floater ? "block" : "none"}}>
+                        <input type="file" onChange={handleChange} />
+                        <button onClick={handleClick} style={{height:50}}>Convert to text</button>
+                    </div>
+                    <button onClick={() => setFloater(prev => !prev)}>clip</button>
                 </div>
                 {/* pin */}
+                <div className="mic-wrapper">
+                    <button className="mic-btn" onClick={handleMicChange}>mic</button>
+                </div>
             </div>
         </div>
         <div className="text-editor-body body">
             <textarea
             className="text-editor-textarea"
             name="postContent"
-            rows={4}
             value={text}
-            onChange={e => setText(e.target.value)}
+            onChange={e => setTextareaText(index, e.target.value)}
         />
         {/* <img 
            src={image} className="App-logo" alt="logo"

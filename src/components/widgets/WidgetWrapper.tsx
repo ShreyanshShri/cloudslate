@@ -6,11 +6,12 @@ import "./widgets.css";
 type Props = {
     Child? : any,
     title: string,
+    opened: boolean;
   }
 
-const WidgetWrapper = ({Child, title} : Props) => {
+const WidgetWrapper = ({Child, title, opened} : Props) => {
 
-    const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+    const [isCollapsed, setIsCollapsed] = useState<boolean>(!opened);
 
   return (
     <div className='widget-wrapper'>
@@ -24,8 +25,6 @@ const WidgetWrapper = ({Child, title} : Props) => {
         <div style={{
                 lineHeight: isCollapsed ? "0" : "",
                 height: isCollapsed ? "0" : "100%",
-                padding: isCollapsed ? "0px 20px" : "10px 20px",
-
             }} 
             className="collapsable widget-body">
             <Child />

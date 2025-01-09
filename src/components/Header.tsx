@@ -1,6 +1,8 @@
 const Header = () => {
   return (
-    <div id="header">Header</div>
+    <div id="header">
+      <span id="heading">Cloud Slate</span>
+    </div>
   )
 }
 
