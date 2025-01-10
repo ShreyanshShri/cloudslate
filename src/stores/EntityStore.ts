@@ -7,12 +7,21 @@ declare global {
     }
 }
 
+type quiz_data = {
+    question: string,
+    optionsList: Array<object>,
+    correctAnsIndex: number
+}
+
 type entityStore = {
     entities: Array<object>,
+    displayQuizMaker: boolean,
     deleteEntity: (index: number) => void,
     moveEntity: (index: number, dirn: string) => void,
+    setDisplayQuizMaker: (curr_state: boolean) => void,
     pushTextEditor: (text: string) => void,
     pushPlotter: () => void,
+    pushQuiz: (data: quiz_data) => void,
     setTextareaText: (index: number, text: string) => void,
     setPlotterData: (index: number, data: string) => void
 };
@@ -84,17 +93,38 @@ const setPlotterData = (set: any, index: number, data: string) => {
     });
 }
 
-// const getPlotterData = (index: number) => {
-//     return useEntityStore.getState().entities[index]?.data;
-// }
+
+// QUIZ logic
+const setDisplayQuizMaker = (set: any, display_state: boolean) => {
+    set(() => ({displayQuizMaker: display_state}));
+}
+
+/*
+    question: string,
+    optionsList: [{
+                    text: string,
+                    isCorrect: boolean
+                }],
+    correctAnsIndex: number
+*/
+const pushQuiz = (set: any, data: quiz_data) => {
+    set((state: any) => ({entities: [...state.entities, {type: "quiz", data}]}));
+}
 
 
 const useEntityStore = create<entityStore>(zukeeper((set: any) => ({
-    entities: [{type: "plotter", data: '{"version":10,"randomSeed":"5f6f6b15c94f6a1a476ff378d290963a","graph":{"viewport":{"xmin":-10,"ymin":-6.565100329343441,"xmax":10,"ymax":6.565100329343441}},"expressions":{"list":[{"type":"expression","id":"2","color":"#388c46","latex":"x^{2}"}]}}'}],
+    entities: [
+        {type: "plotter", data: "{\"version\": 10, \"randomSeed\": \"2969dce9ac156f03d4f8c3e71ff92cfb\", \"graph\": {\"viewport\": {\"xmin\": -10, \"ymin\": -6.150683604526957, \"xmax\": 10, \"ymax\": 6.150683604526957}}, \"expressions\": {\"list\": []}}"},
+        {type: "textarea", text: "Hello This is Shreyansh"},
+        {type: "quiz", data: { question: "What is value of PI?", optionsList:[{ text: "2.71", isCorrect: false },{ text: "3.14", isCorrect: true },{ text: "1.41", isCorrect: false },{ text: "1.67", isCorrect: false },], correctAnsIndex: 1 }}
+    ],
+    displayQuizMaker: false,
     deleteEntity: (index: number) => deleteEntity(set, index),
     moveEntity: (index: number, dirn: string) => moveEntity(set, index, dirn),
+    setDisplayQuizMaker: (curr_state: boolean) => setDisplayQuizMaker(set, curr_state),
     pushTextEditor: (text : string) => pushTextEditor(set, text),
     pushPlotter: () => pushPlotter(set),
+    pushQuiz: (data: quiz_data) => pushQuiz(set, data),
     setTextareaText: (index: number, text: string) => setTextareaText(set, index, text),
     setPlotterData: (index: number, data: string) => setPlotterData(set, index, data),
 })));

@@ -19,7 +19,7 @@ const Plotter = ({index} : props) => {
 
     useEffect(() => {
         if(plotterData.data !== "") { plotterRef.current.setState(JSON.parse(plotterData.data)); }
-        plotterRef.current.updateSettings({ invertedColors: true })
+        plotterRef.current.updateSettings({ invertedColors: true, })
         console.log(plotterRef.current)
     }, []);
 
