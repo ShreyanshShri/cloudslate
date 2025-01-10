@@ -1,5 +1,9 @@
 import {Expression, GraphingCalculator} from "desmos-react";
 import { useEffect, useRef } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock, faCameraRetro } from '@fortawesome/free-solid-svg-icons';
+
+import Controls from "./utils/Controls";
 
 import useEntityStore from "../../stores/EntityStore";
 
@@ -15,7 +19,7 @@ const Plotter = ({index} : props) => {
 
     useEffect(() => {
         if(plotterData.data !== "") { plotterRef.current.setState(JSON.parse(plotterData.data)); }
-        // plotterRef.current.updateSettings({ invertedColors: true })
+        plotterRef.current.updateSettings({ invertedColors: true })
         console.log(plotterRef.current)
     }, []);
 
@@ -36,16 +40,17 @@ const Plotter = ({index} : props) => {
 
     return (
     <div className="mb-2">
-        <div className="text-editor-top-bar top-bar">
+        <div className="entity-top-bar">
             <div className="entitiy-title">
                 Plotter
             </div>
-            <div className="entity-tools">
-                <button onClick={saveState}>Lock</button>
-                <button onClick={takeScreenShot}>Screenshot</button>
+            <Controls index={index} />
+            <div className="entity-tools" style={{width: "60px"}}>
+                <span className="control-btns" onClick={saveState}><FontAwesomeIcon icon={ faLock } /></span>
+                <span className="control-btns" onClick={takeScreenShot}><FontAwesomeIcon icon={ faCameraRetro } /></span>
             </div>
         </div>
-        <div className="text-editor-body body">
+        <div className="entity-body">
             <GraphingCalculator attributes={{ className: "calculator" }} projectorMode ref={plotterRef}>
                 <Expression id="fn" latex="x^2" />
             </GraphingCalculator>

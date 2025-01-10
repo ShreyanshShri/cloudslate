@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import Tesseract from 'tesseract.js';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperclip, faMicrophone } from '@fortawesome/free-solid-svg-icons';
+
+import Controls from "./utils/Controls";
 
 import useEntityStore from "../../stores/EntityStore";
 // import preprocessImage from "../../utils/preprocess";
@@ -17,8 +21,8 @@ const TextEditor = ({index}: props) => {
     // const canvasRef = useRef<any>(null);
     // const imageRef = useRef<any>(null);
 
+    const text = useEntityStore((state: any) => state.entities[index]?.text);
     const setTextareaText = useEntityStore((state: any) => state.setTextareaText);
-    const text = useEntityStore((state: any) => state.entities[index].text);
 
     const {
         transcript,
@@ -37,7 +41,7 @@ const TextEditor = ({index}: props) => {
     }
     
     useEffect(() => {
-        setTextareaText(index, transcript);
+        // setTextareaText(index, transcript);
     }, [transcript])
 
     const handleChange = (event: any) => {
@@ -74,25 +78,26 @@ const TextEditor = ({index}: props) => {
 
   return (
     <div className="mb-2">
-        <div className="text-editor-top-bar top-bar">
+        <div className="entity-top-bar">
             <div className="entitiy-title">
                 Text Editor
             </div>
-            <div className="entity-tools">
+            <Controls index={index} />
+            <div className="entity-tools" style={{width: "60px"}}>
                 <div className="clip-wrapper">
                     <div className="floater" style={{display: floater ? "block" : "none"}}>
                         <input type="file" onChange={handleChange} />
                         <button onClick={handleClick} style={{height:50}}>Convert to text</button>
                     </div>
-                    <button onClick={() => setFloater(prev => !prev)}>clip</button>
+                    <span className="control-btns" onClick={() => setFloater(prev => !prev)}><FontAwesomeIcon icon={ faPaperclip } /></span>
                 </div>
                 {/* pin */}
                 <div className="mic-wrapper">
-                    <button className="mic-btn" onClick={handleMicChange}>mic</button>
+                    <span className="control-btns mic-btn" onClick={handleMicChange}><FontAwesomeIcon icon={ faMicrophone } /></span>
                 </div>
             </div>
         </div>
-        <div className="text-editor-body body">
+        <div className="entity-body">
             <textarea
             className="text-editor-textarea"
             name="postContent"
