@@ -207,3 +207,27 @@
 }
 
 /* quiz ends */
+
+
+
+/* whiteboard starts */
+.whiteboard-body {
+    position: 'fixed';
+    inset: 0;
+    height: 60vh;
+}
+
+.whiteboard-body-expanded {
+    height: 90vh;
+}
+ 
+.whiteboard-expanded {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000000;
+}
+
+/* whiteboard ends */

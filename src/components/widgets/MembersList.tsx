@@ -1,6 +1,10 @@
+import MemberCard from "./utils/MemberCard"
+
 const MembersList = () => {
   return (
-    <div>MembersList</div>
+    <div>
+      <MemberCard name="Me" avatar={null} index={0} />
+    </div>
   )
 }
 

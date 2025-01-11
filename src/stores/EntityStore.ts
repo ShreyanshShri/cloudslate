@@ -22,8 +22,10 @@ type entityStore = {
     pushTextEditor: (text: string) => void,
     pushPlotter: () => void,
     pushQuiz: (data: quiz_data) => void,
+    pushWhiteboard: (snapshot: any) => void,
     setTextareaText: (index: number, text: string) => void,
-    setPlotterData: (index: number, data: string) => void
+    setPlotterData: (index: number, data: string) => void,
+    saveWhiteboard: (index: number, snapshot: any) => void,
 };
 
 const deleteEntity = (set: any, index: number) => {
@@ -112,12 +114,28 @@ const pushQuiz = (set: any, data: quiz_data) => {
 }
 
 
+// whiteboard logic
+const pushWhiteboard = (set: any, snapshot: any) => {
+    set((state: any) => ({entities: [...state.entities, {type: "whiteboard", snapshot}]}));
+}
+
+const saveWhiteboard = (set: any, index: number, snapshot: any) => {
+    set((state: any) => {
+        let temp = state.entities;
+        temp[index] = {type: "whiteboard", snapshot};
+        return ({entities: [...temp]});
+    });
+}
+
+
+
 const useEntityStore = create<entityStore>(zukeeper((set: any) => ({
-    entities: [
-        {type: "plotter", data: "{\"version\": 10, \"randomSeed\": \"2969dce9ac156f03d4f8c3e71ff92cfb\", \"graph\": {\"viewport\": {\"xmin\": -10, \"ymin\": -6.150683604526957, \"xmax\": 10, \"ymax\": 6.150683604526957}}, \"expressions\": {\"list\": []}}"},
-        {type: "textarea", text: "Hello This is Shreyansh"},
-        {type: "quiz", data: { question: "What is value of PI?", optionsList:[{ text: "2.71", isCorrect: false },{ text: "3.14", isCorrect: true },{ text: "1.41", isCorrect: false },{ text: "1.67", isCorrect: false },], correctAnsIndex: 1 }}
-    ],
+    // entities: [
+    //     {type: "plotter", data: "{\"version\": 10, \"randomSeed\": \"2969dce9ac156f03d4f8c3e71ff92cfb\", \"graph\": {\"viewport\": {\"xmin\": -10, \"ymin\": -6.150683604526957, \"xmax\": 10, \"ymax\": 6.150683604526957}}, \"expressions\": {\"list\": []}}"},
+    //     {type: "textarea", text: "Hello This is Shreyansh"},
+    //     {type: "quiz", data: { question: "What is value of PI?", optionsList:[{ text: "2.71", isCorrect: false },{ text: "3.14", isCorrect: true },{ text: "1.41", isCorrect: false },{ text: "1.67", isCorrect: false },], correctAnsIndex: 1 }}
+    // ],
+    entities: [{type: "textarea", text: "Welcome to cloudslate...."},],
     displayQuizMaker: false,
     deleteEntity: (index: number) => deleteEntity(set, index),
     moveEntity: (index: number, dirn: string) => moveEntity(set, index, dirn),
@@ -125,8 +143,10 @@ const useEntityStore = create<entityStore>(zukeeper((set: any) => ({
     pushTextEditor: (text : string) => pushTextEditor(set, text),
     pushPlotter: () => pushPlotter(set),
     pushQuiz: (data: quiz_data) => pushQuiz(set, data),
+    pushWhiteboard: (snapshot: any) => pushWhiteboard(set, snapshot),
     setTextareaText: (index: number, text: string) => setTextareaText(set, index, text),
     setPlotterData: (index: number, data: string) => setPlotterData(set, index, data),
+    saveWhiteboard: (index: number, snapshot: any) => saveWhiteboard(set, index, snapshot),
 })));
 
 window.store = useEntityStore;
