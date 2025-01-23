@@ -124,6 +124,7 @@
     align-items: center;
     justify-content: flex-start;
     padding: 5px 20px;
+    opacity: 0.75;
 }
 
 .member-card span {

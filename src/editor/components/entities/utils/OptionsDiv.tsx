@@ -15,7 +15,7 @@ const OptionsDiv = ({ data, updateCurrentOption, index, isRed, isGreen } : props
   return (
     <div className={isRed ? "options-div opt-red" : isGreen ? "options-div opt-green" : "options-div"} onClick={() => updateCurrentOption(index)}>
         <span>{data.text}</span>
-        <input type="checkbox" name="select-option" checked={data.isCorrect} />
+        <input type="checkbox" name="select-option" checked={data.isCorrect} readOnly />
     </div>
   )
 }

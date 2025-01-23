@@ -37,3 +37,12 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #525252;
 }
+
+.btn-dark {
+  padding: 8px;
+  background: rgb(39 38 38);
+  border: none;
+  border-radius: 3px;
+  opacity: 0.75;
+  cursor: pointer;
+}

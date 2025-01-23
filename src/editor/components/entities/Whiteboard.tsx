@@ -6,7 +6,7 @@ import 'tldraw/tldraw.css';
 
 import "./entities.css";
 import Controls from "./utils/Controls";
-import useEntityStore from "../../stores/EntityStore";
+import useFileStore from "../../../stores/FileStore";
 
 type props = {
     index: number,
@@ -25,7 +25,7 @@ const Whiteboard = ({index, snapshot}: props) => {
             </div>
             <Controls index={index} />
             <div className="entity-tools" style={{width: "60px"}}>
-                <span className="control-btns" onClick={() => setSave((prev: any) => !prev)}><FontAwesomeIcon icon={ faLock } /></span>
+                <span className="control-btns" onClick={() => setSave(true)}><FontAwesomeIcon icon={ faLock } /></span>
                 <span className="control-btns" onClick={() => setExpand((prev: any) => !prev)}><FontAwesomeIcon icon={ faExpand } /></span>
             </div>
         </div>
@@ -34,16 +34,16 @@ const Whiteboard = ({index, snapshot}: props) => {
                 <InsideOfContext />
             </Tldraw> */}
             {snapshot ?
-                <Tldraw snapshot={snapshot}><SaveButton save={save} index={index} /></Tldraw> 
-               : <Tldraw><SaveButton save={save} index={index} /></Tldraw>}
+                <Tldraw snapshot={snapshot}><SaveButton save={save} setSave={setSave} index={index} /></Tldraw> 
+               : <Tldraw><SaveButton save={save} setSave={setSave} index={index} /></Tldraw>}
         </div>
     </div>
   )
 }
 
-function SaveButton({index, save} : {index: any, save: boolean}) {
+function SaveButton({index, save, setSave} : {index: any, save: boolean, setSave: any}) {
 	const editor = useEditor()
-    const saveWhiteboard = useEntityStore((state: any) => state.saveWhiteboard);
+    const saveWhiteboard = useFileStore((state: any) => state.saveWhiteboard);
 
     useEffect(() => {
         // const interval = setInterval(() => {
@@ -51,8 +51,11 @@ function SaveButton({index, save} : {index: any, save: boolean}) {
             // console.log(document, session)
             // saveWhiteboard(index, {document, session});
             // }, 5000);    
-        const { document, session } = getSnapshot(editor.store)
-        saveWhiteboard(index, {document, session});
+        if(save) {
+            const { document, session } = getSnapshot(editor.store)
+            saveWhiteboard(index, {document, session});
+            setSave(false);
+        }
 
         return () => {
             // clearInterval(interval);

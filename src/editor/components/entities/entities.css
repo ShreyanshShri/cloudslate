@@ -7,12 +7,20 @@
 }
 
 .entity-top-bar {
+    position: relative;
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
     background-color: #1e1e1e;
     border-radius: 4px 4px 0px 0px;
     opacity: 0.89;
+}
+
+.controls {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .entity-tools {

@@ -1,11 +1,13 @@
 import {Expression, GraphingCalculator} from "desmos-react";
 import { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock, faCameraRetro } from '@fortawesome/free-solid-svg-icons';
+import { faCameraRetro } from '@fortawesome/free-solid-svg-icons';
 
 import Controls from "./utils/Controls";
 
-import useEntityStore from "../../stores/EntityStore";
+import throttleFunction from "../../../utils/throttle_func";
+
+import useFileStore from "../../../stores/FileStore";
 
 type props = {
     index: number
@@ -14,13 +16,14 @@ type props = {
 const Plotter = ({index} : props) => {
     const plotterRef: any = useRef<any>(null);
 
-    const plotterData = useEntityStore((state: any) => state.entities[index]);
-    const setPlotterData = useEntityStore((state: any) => state.setPlotterData);
+    const plotterData = useFileStore((state: any) => state.file.entities[index]);
+    const setPlotterData = useFileStore((state: any) => state.setPlotterData);
 
     useEffect(() => {
         if(plotterData.data !== "") { plotterRef.current.setState(JSON.parse(plotterData.data)); }
         plotterRef.current.updateSettings({ invertedColors: true, })
-        console.log(plotterRef.current)
+
+        plotterRef.current.observeEvent('change', throttleFunction(saveState, 100));
     }, []);
 
     const saveState = () => {
@@ -45,8 +48,7 @@ const Plotter = ({index} : props) => {
                 Plotter
             </div>
             <Controls index={index} />
-            <div className="entity-tools" style={{width: "60px"}}>
-                <span className="control-btns" onClick={saveState}><FontAwesomeIcon icon={ faLock } /></span>
+            <div className="entity-tools" style={{width: "30px"}}>
                 <span className="control-btns" onClick={takeScreenShot}><FontAwesomeIcon icon={ faCameraRetro } /></span>
             </div>
         </div>

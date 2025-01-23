@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import useEntityStore from '../../stores/EntityStore';
+import useFileStore from '../../../stores/FileStore';
 import OptionsDiv from './utils/OptionsDiv';
 
 import "./entities.css";
@@ -13,8 +13,8 @@ type option = {
 };
 
 const QuizMaker = () => {
-  const setDisplayQuizMaker = useEntityStore((state: any) => state.setDisplayQuizMaker);
-  const pushQuiz = useEntityStore((state: any) => state.pushQuiz);
+  const setDisplayQuizMaker = useFileStore((state: any) => state.setDisplayQuizMaker);
+  const pushQuiz = useFileStore((state: any) => state.pushQuiz);
 
   const [question, setQuestion] = useState<string>("");
   const [option, setOption] = useState<option>({text: "", isCorrect: false});

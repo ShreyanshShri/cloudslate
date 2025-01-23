@@ -44,7 +44,6 @@ const Quiz = ({data, index}: props) => {
         }
     }
 
-    console.log(data, index);
     return (
         <div className="mb-2">
         <div className="entity-top-bar">

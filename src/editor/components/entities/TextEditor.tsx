@@ -6,7 +6,7 @@ import { faPaperclip, faMicrophone } from '@fortawesome/free-solid-svg-icons';
 
 import Controls from "./utils/Controls";
 
-import useEntityStore from "../../stores/EntityStore";
+import useFileStore from "../../../stores/FileStore";
 // import preprocessImage from "../../utils/preprocess";
 
 import "./entities.css";
@@ -21,8 +21,8 @@ const TextEditor = ({index}: props) => {
     // const canvasRef = useRef<any>(null);
     // const imageRef = useRef<any>(null);
 
-    const text = useEntityStore((state: any) => state.entities[index]?.text);
-    const setTextareaText = useEntityStore((state: any) => state.setTextareaText);
+    const text = useFileStore((state: any) => state.file?.entities[index]?.data);
+    const setTextareaText = useFileStore((state: any) => state.setTextareaText);
 
     const {
         transcript,

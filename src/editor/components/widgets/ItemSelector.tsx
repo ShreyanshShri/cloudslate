@@ -1,12 +1,12 @@
-import useEntityStore from "../../stores/EntityStore";
+import useFileStore from "../../../stores/FileStore";
 
 import "./widgets.css";
 
 const ItemSelector = () => {
-    const pushTextEditor = useEntityStore((state :any) => state.pushTextEditor);
-    const pushPlotter = useEntityStore((state :any) => state.pushPlotter);
-    const pushWhiteboard = useEntityStore((state: any) => state.pushWhiteboard);
-    const setDisplayQuizMaker = useEntityStore((state: any) => state.setDisplayQuizMaker);
+    const pushTextEditor = useFileStore((state :any) => state.pushTextEditor);
+    const pushPlotter = useFileStore((state :any) => state.pushPlotter);
+    const pushWhiteboard = useFileStore((state: any) => state.pushWhiteboard);
+    const setDisplayQuizMaker = useFileStore((state: any) => state.setDisplayQuizMaker);
   return (
     <div>
         <ul id="picker-list">
