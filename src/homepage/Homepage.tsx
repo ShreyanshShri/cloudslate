@@ -1,13 +1,30 @@
 import { Link } from "react-router-dom";
 
+import "./homepage.css";
+
+import logo from "../../public/images/cloudslate-logo.png";
+
 const Homepage = () => {
-    return (
-      <div>
-        Home <br />
-        <Link to="/auth/profile">Profile</Link><br />
-        <Link to="/auth/login">Login</Link>
-      </div>
-    )
-}
+	return (
+		<div id="homepage">
+			<div id="hero">
+				<div id="hero-left">
+					<h1 style={{ margin: "0" }}>Welcome to</h1>
+					<h1 id="hero-main-title">Cloudslate</h1>
+					<p id="hero-desc">
+						Designed to empower educators, teams, and creators. <br />
+						Collaborate seamlessly, anytime and anywhere.
+					</p>
+					<Link to="/register">
+						<button className="btn btn-darker">Get Started</button>
+					</Link>
+				</div>
+				<div id="hero-right">
+					<img src={logo} alt="cloudslate-hero-img" id="hero-img" />
+				</div>
+			</div>
+		</div>
+	);
+};
 
 export default Homepage;

@@ -1,56 +1,100 @@
 .signup-container {
-    width: 60vw;
-    margin: auto;
-    padding: 20px 0px;
+	width: 60vw;
+	margin: auto;
+	padding: 20px 0px;
 }
 
 .signup-container input {
-    width: 100%;
-    outline: none;
-    padding: 10px;
-    margin: 10px 0px;
-    flex: 8;
-    margin-right: 20px;
-}
-
-.signup-container button {
-    padding: 14px;
-    margin-top: 10px;
-    background: rgb(19, 19, 19);
-    
-    border: none;
-    border-radius: 3px;
-    opacity: 1;
-    cursor: pointer;
+	width: 100%;
+	outline: none;
+	padding: 10px;
+	margin: 10px 0px;
+	flex: 8;
+	margin-right: 20px;
 }
 
 .signup-container label {
-    opacity: 0.85;
+	color: var(--text-85);
 }
 
 .signup-container a {
-    opacity: 0.8;
-    margin-top: 10px;
-    display: block;
-    text-underline-offset: 4px;
+	color: var(--text-80);
+	margin-top: 10px;
+	display: block;
+	text-underline-offset: 4px;
 }
 
-
-
+/* Loader Element */
 .loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.spinner {
+	border: 16px solid #f3f3f3;
+	border-top: 16px solid #3498db;
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+#profile-page {
+	width: 80vw;
+	margin: auto;
+	position: relative; /* Ensure the loader positions itself relative to this */
+	height: 100vh; /* Add height to test vertical centering */
+}
+
+a {
+	text-decoration: none;
+}
+
+#personal-info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#profile-page p {
+	color: rgba(255, 255, 255, 0.8);
+	margin-top: 0;
+}
+
+#profile-page h1 {
+	margin-bottom: 0;
+}
+
+.file-list-card {
+	display: block;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+	margin-bottom: 10px;
+	padding: 6px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: rgba(255, 255, 255, 0.89);
+}
+
+.file-list-card-createdAt {
+	color: rgba(255, 255, 255, 0.3);
+	letter-spacing: 1.2px;
+	font-size: 12px;
+	margin-top: 4px;
+}
+
+.file-list-card-title {
+	color: rgba(255, 255, 255, 0.8);
 }

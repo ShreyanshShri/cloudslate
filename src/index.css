@@ -1,14 +1,32 @@
+html {
+	background-color: var(--base-color);
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+	color-scheme: light dark;
+	color: rgba(255, 255, 255, 0.87);
+	background-color: var(--base-color);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	--text-45: rgba(255, 255, 255, 0.45);
+	--text-55: rgba(255, 255, 255, 0.55);
+	--text-75: rgba(255, 255, 255, 0.75);
+	--text-80: rgba(255, 255, 255, 0.8);
+	--text-85: rgba(255, 255, 255, 0.85);
+	--text-90: rgba(255, 255, 255, 0.9);
+	--text-95: rgba(255, 255, 255, 0.95);
+	--text-100: rgba(255, 255, 255, 1);
+
+	--base-color: #242424;
+	--dark: #1b1b1b;
+	--darker: #0c0c0c;
+	--darkest: #0c0c0c;
 }

@@ -2,7 +2,7 @@ import { create } from "zustand";
 import zukeeper from "zukeeper";
 import moment from "moment";
 
-import { file_data, quiz_data } from "../types/fileTypes";
+import { file_type, quiz_type } from "../types/fileTypes";
 
 import {
 	setFile,
@@ -19,9 +19,9 @@ import {
 	saveWhiteboard,
 } from "./utils/fileStoreFunctions";
 
-type entityStore = {
-	file: file_data;
-	setFile: (file: file_data) => void;
+export type fileStoreType = {
+	file: file_type;
+	setFile: (file: file_type) => void;
 	setFileVisibility: (isPublic: boolean) => void;
 	displayQuizMaker: boolean;
 	deleteEntity: (index: number) => void;
@@ -29,14 +29,14 @@ type entityStore = {
 	setDisplayQuizMaker: (curr_state: boolean) => void;
 	pushTextEditor: (text: string) => void;
 	pushPlotter: () => void;
-	pushQuiz: (data: quiz_data) => void;
+	pushQuiz: (data: quiz_type) => void;
 	pushWhiteboard: (snapshot: any) => void;
 	setTextareaText: (index: number, text: string) => void;
 	setPlotterData: (index: number, data: string) => void;
 	saveWhiteboard: (index: number, snapshot: any) => void;
 };
 
-const useFileStore = create<entityStore>(
+const useFileStore = create<fileStoreType>(
 	zukeeper((set: any) => ({
 		file: {
 			admin: "User",
@@ -46,7 +46,7 @@ const useFileStore = create<entityStore>(
 			title: "New File",
 			entities: [],
 		},
-		setFile: (file: file_data) => setFile(set, file),
+		setFile: (file: file_type) => setFile(set, file),
 		setFileVisibility: (isPublic: boolean) => setFileVisibility(set, isPublic),
 		displayQuizMaker: false,
 		deleteEntity: (index: number) => deleteEntity(set, index),
@@ -55,7 +55,7 @@ const useFileStore = create<entityStore>(
 			setDisplayQuizMaker(set, curr_state),
 		pushTextEditor: (text: string) => pushTextEditor(set, text),
 		pushPlotter: () => pushPlotter(set),
-		pushQuiz: (data: quiz_data) => pushQuiz(set, data),
+		pushQuiz: (data: quiz_type) => pushQuiz(set, data),
 		pushWhiteboard: (snapshot: any) => pushWhiteboard(set, snapshot),
 		setTextareaText: (index: number, text: string) =>
 			setTextareaText(set, index, text),

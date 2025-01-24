@@ -1,9 +1,11 @@
 import "./common_styles.css";
 
 const Loader = () => {
-  return (
-    <div className="loader"></div>
-  )
-}
+	return (
+		<div className="loader">
+			<div className="spinner"></div>
+		</div>
+	);
+};
 
-export default Loader
+export default Loader;

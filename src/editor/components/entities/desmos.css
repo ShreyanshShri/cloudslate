@@ -1,0 +1,42 @@
+.dcg-calculator-api-container .dcg-container .dcg-expression-top-bar {
+	background: rgb(228, 228, 228);
+}
+
+.dcg-exppanel,
+dcg-disable-horizontal-scroll-to-cursor {
+	background: rgb(228, 228, 228) !important;
+}
+
+.dcg-grapher {
+	color: invert(var(--text-55)) !important;
+}
+
+.dcg-tab {
+	background: rgb(228, 228, 228) !important;
+}
+
+/* .dcg-graph-outer {
+    } */
+
+.dcg-container,
+dcg-inverted-colors,
+dcg-default-border,
+dcg-is-interactive,
+dcg-tap-container,
+touchtracking_id_1,
+dcg-hovered {
+	background: rgb(238, 238, 238) !important;
+}
+
+.dcg-calculator-api-container
+	.dcg-container
+	.dcg-mq-editable-field:not(.dcg-no-fadeout):after {
+	background: none;
+}
+
+.dcg-calculator-api-container
+	.dcg-expressionitem.dcg-new-expression
+	.dcg-new-math-div
+	.dcg-new-expression-fade {
+	background: none;
+}

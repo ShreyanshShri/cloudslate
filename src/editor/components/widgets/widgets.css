@@ -1,115 +1,107 @@
 .collapsable {
-    display: block;
-    /* line-height:0;
+	display: block;
+	/* line-height:0;
     height: 0; */
-    overflow: hidden;
-    transition: 0.2s;
-    overflow:hidden;
+	overflow: hidden;
+	transition: 0.2s;
+	overflow: hidden;
 }
 
 .collapse-btn {
-    width: 20px;
-    height: 20px;
-    border-radius: 50px;
-    border: none;
-    background: #171717;
-    cursor: pointer;
+	width: 20px;
+	height: 20px;
+	border-radius: 50px;
+	border: none;
+	background: var(--dark);
+	cursor: pointer;
 }
 
 .widget-wrapper-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #1e1e1e;
-    border-radius: 4px 4px 0px 0px;
-    opacity: 0.85;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 20px;
+	background-color: var(--darker);
+	border-radius: 4px 4px 0px 0px;
+	color: var(--text-85);
 }
 
 .widget-wrapper {
-    border: 1px solid #1e1e1e;
-    border-radius: 4px;
-    margin-bottom: 1.5rem;
+	border: 1px solid #1e1e1e;
+	border-radius: 4px;
+	margin-bottom: 1.5rem;
 }
-
-
 
 /* item selector starts */
 
 #picker-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 #picker-list li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* width: 100%; */
-    background: rgb(27 27 27);
-    padding: 10px 25px;
-    cursor: pointer;
-    opacity: 0.75;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	/* width: 100%; */
+	background: var(--dark);
+	padding: 10px 25px;
+	cursor: pointer;
+	color: var(--text-75);
 }
-
-
 
 /* item selector ends */
 
-
-
-
 /* calculator starts */
 
-#calculator{
-    /* max-width:320px; */
-    width: 100%;
-    background: #eee;
+#calculator {
+	/* max-width:320px; */
+	width: 100%;
+	background: #eee;
 }
-.calculator-buttons{
-    display:grid;
-    grid-template-columns: repeat(4,1fr);
-    border:0;
+.calculator-buttons {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	border: 0;
 }
 
 .calc-numbers-wrapper {
-    padding: 20px;
-    height: 100px;
-    width: 100%;
+	padding: 20px;
+	height: 100px;
+	width: 100%;
 }
 
-.calc-numbers{
-    font-family: 'Space Mono', serif;
-    background: black;
-    color: white;
-    border:0;
-    outline: 0;
-    margin: 0;
-    padding: 0;
-    text-align: right;
-    font-size: 2em;
-    width: 100%;
-    height: 100%;
+.calc-numbers {
+	font-family: "Space Mono", serif;
+	background: black;
+	color: white;
+	border: 0;
+	outline: 0;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+	font-size: 2em;
+	width: 100%;
+	height: 100%;
 }
-.span-2{
-    grid-column: span 2;
+.span-2 {
+	grid-column: span 2;
 }
-.span-3{
-    grid-column: span 3;
+.span-3 {
+	grid-column: span 3;
 }
-.btn{
-    /* font-size:1em; */
-    height: 65px;
-    border:1px solid black;
+.calc-btn {
+	/* font-size:1em; */
+	height: 65px;
+	border: 1px solid black;
 }
-.btn:hover{
-    background: #fff;
-    color: black;
+.calc-btn:hover {
+	background: #fff;
+	color: black;
 }
-.orange{
-    background-color:orange;
+.orange {
+	background-color: orange;
 }
-
 
 /* calculator ends */
 
@@ -117,29 +109,29 @@
     padding: 10px 20px;
 } */
 
-
 /* memberlist starts */
 .member-card {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 5px 20px;
-    opacity: 0.75;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 5px 20px;
+	color: var(--text-75);
+	background: var(--dark);
 }
 
 .member-card span {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 .avatar {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255,255,255,0.4); 
-    border-radius: 50px;
-    background-color: rgb(20,20,20);
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	border-radius: 50px;
+	background-color: rgb(20, 20, 20);
 }
 
 /* memberlist ends */

@@ -1,0 +1,26 @@
+#hero {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 80vw;
+	margin: auto;
+	height: 100vh;
+}
+
+#hero h3 {
+	margin: 0;
+}
+
+#hero-main-title {
+	margin: 12px 0px;
+	font-size: 6rem;
+	line-height: 4rem;
+	letter-spacing: 4px;
+	font-family: "dcg-icons";
+}
+
+#hero-desc {
+	color: var(--text-75);
+	margin-top: 2em;
+	line-height: 25px;
+}

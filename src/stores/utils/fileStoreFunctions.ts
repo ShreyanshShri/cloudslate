@@ -1,8 +1,8 @@
 import useEditHistoryStore from "../EditsHistoryStore";
 
-import { file_data, quiz_data } from "../../types/fileTypes";
+import { file_type, quiz_type } from "../../types/fileTypes";
 
-const setFile = (set: any, file: file_data) => {
+const setFile = (set: any, file: file_type) => {
 	set((state: any) => ({
 		...state,
 		file,
@@ -154,7 +154,7 @@ const setDisplayQuizMaker = (set: any, display_state: boolean) => {
                 }],
     correctAnsIndex: number
 */
-const pushQuiz = (set: any, data: quiz_data) => {
+const pushQuiz = (set: any, data: quiz_type) => {
 	const entity = { type: "quiz", data: JSON.stringify(data) };
 	set((state: any) => {
 		return {

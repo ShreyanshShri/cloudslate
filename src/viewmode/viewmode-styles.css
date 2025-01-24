@@ -1,0 +1,59 @@
+#view-page {
+	width: 80vw;
+	padding: 20px;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.view-top {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.view-textarea {
+	width: 100%;
+	text-align: justify;
+	color: var(--text-95);
+	letter-spacing: 1px;
+}
+
+.view-quiz {
+	width: 100%;
+}
+
+.question {
+	font-size: 20px;
+	letter-spacing: 1px;
+	margin-bottom: 5px;
+}
+
+.option-list-item {
+	margin-left: 28px;
+}
+
+.corr-ans {
+	color: var(--text-70);
+}
+
+.graph-img,
+.whiteboard-img {
+	width: auto;
+	max-width: 80vw;
+	height: 50vh;
+	margin: auto;
+}
+
+.view-textarea,
+.view-quiz,
+.graph-img,
+.whiteboard-img {
+	margin-bottom: 20px;
+}
+
+.calculator-wrapper {
+	display: none;
+}

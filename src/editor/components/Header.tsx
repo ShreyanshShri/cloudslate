@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import useFileStore from "../../stores/FileStore";
 import useEditHistoryStore from "../../stores/EditsHistoryStore";
@@ -19,9 +22,7 @@ const Header = () => {
 	const setFileVisibility = useFileStore(
 		(state: any) => state.setFileVisibility
 	);
-	const pushToServer = useEditHistoryStore(
-		(state: any) => state.pushToServer
-	);
+	const pushToServer = useEditHistoryStore((state: any) => state.pushToServer);
 	const hardSave = useEditHistoryStore((state: any) => state.hardSave);
 	const historyLength = useEditHistoryStore(
 		(state: any) => state.history.length
@@ -31,48 +32,49 @@ const Header = () => {
 	useEffect(() => {
 		setTitle(file.title);
 		setIsPublic(file.public);
-		console.log(file.public);
 	}, [file]);
 
 	useEffect(() => {
 		if (historyLength % 5 == 0) {
 			pushToServer(id);
 		}
-	}, [historyLength]);
-
-	useEffect(() => {
-		const titleInterval = setInterval(() => {
-			if (!changed) return;
-			pushTitleChangeToServer();
-		}, 2000);
 
 		const saveInterval = setInterval(() => {
 			if (historyLength !== 0) {
 				pushToServer(id);
 			}
-		}, 10000);
+		}, 7000);
 
 		return () => {
-			clearInterval(titleInterval);
 			clearInterval(saveInterval);
 		};
-	}, []);
+	}, [historyLength]);
+
+	useEffect(() => {
+		// const titleInterval = setInterval(() => {
+		// 	if (!changed) return;
+		// 	pushTitleChangeToServer();
+		// }, 2000);
+		// console.log("changed");
+		// return () => clearInterval(titleInterval);
+		if (changed) {
+			console.log("changing");
+			pushTitleChangeToServer();
+		}
+	}, [title]);
 
 	const pushTitleChangeToServer = async () => {
+		console.log("title: ", title);
 		if (title === "") return;
 		try {
 			await axios.put(
-				`${
-					import.meta.env.VITE_SERVER_URL
-				}/editor/edit/set-title?id=${id}`,
+				`${import.meta.env.VITE_SERVER_URL}/editor/edit/set-title?id=${id}`,
 				{
 					title,
 				},
 				{
 					headers: {
-						Authorization: `Bearer ${localStorage.getItem(
-							"token"
-						)}`,
+						Authorization: `Bearer ${localStorage.getItem("token")}`,
 					},
 				}
 			);
@@ -94,9 +96,7 @@ const Header = () => {
 				},
 				{
 					headers: {
-						Authorization: `Bearer ${localStorage.getItem(
-							"token"
-						)}`,
+						Authorization: `Bearer ${localStorage.getItem("token")}`,
 					},
 				}
 			);
@@ -109,7 +109,7 @@ const Header = () => {
 
 	const handleNameChange = (e: any) => {
 		setTitle(e.target.value);
-		setChanged(true);
+		if (changed == false) setChanged(true);
 	};
 
 	return (
@@ -127,7 +127,7 @@ const Header = () => {
 				<span id="saved-status">
 					{historyLength === 0 ? "Saved" : "Unsaved"}
 				</span>
-				<button className="btn-dark" onClick={() => hardSave(id)}>
+				<button className="btn btn-dark" onClick={() => hardSave(id)}>
 					Save
 				</button>
 				<label className="switch" title="Make public">
@@ -138,6 +138,9 @@ const Header = () => {
 					/>
 					<span className="slider round"></span>
 				</label>
+				<Link to={`/view/${id}`} id="eye-emoji">
+					<FontAwesomeIcon icon={faEye} />
+				</Link>
 			</div>
 		</div>
 	);
