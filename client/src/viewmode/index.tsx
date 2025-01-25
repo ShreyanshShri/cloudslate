@@ -117,7 +117,7 @@ const ViewPage = () => {
 			<div className="view-top">
 				<h1 id="view-title">{file.title}</h1>
 				<button
-					className="btn btn-darker"
+					className="action-btn btn-darker"
 					id="pdf-btn"
 					style={{ cursor: "pointer" }}
 					onClick={convertToPdf}

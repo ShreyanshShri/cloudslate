@@ -127,7 +127,7 @@ const Header = () => {
 				<span id="saved-status">
 					{historyLength === 0 ? "Saved" : "Unsaved"}
 				</span>
-				<button className="btn btn-dark" onClick={() => hardSave(id)}>
+				<button className="action-btn btn-dark" onClick={() => hardSave(id)}>
 					Save
 				</button>
 				<label className="switch" title="Make public">

@@ -40,7 +40,7 @@ body {
 	background: #525252;
 }
 
-.btn {
+.action-btn {
 	padding: 8px;
 	height: fit-content;
 	border: none;
@@ -50,13 +50,33 @@ body {
 	transition: 0.2s;
 }
 
-.btn:hover {
+.primary-btn {
+	display: inline-block;
+	cursor: pointer;
+	border: 2px solid #222;
+	color: var(--text-90);
+	text-transform: uppercase;
+	font-weight: 600;
+	padding: 0.75rem 1rem 0.6rem;
+	transition: all 0.2s linear;
+	box-shadow: 0 15px 15px -11px rgba(0, 0, 0, 0.4);
+	background: var(--darker);
+	border-radius: 6px;
+	transition: 0.2s;
+}
+
+.action-btn:hover {
 	background: rgb(240, 240, 240);
 	color: black;
 }
 
-.btn:focus {
+.action-btn:focus {
 	outline: 1px solid rgba(255, 255, 255, 0.75);
+}
+
+.primary-btn:hover {
+	background: var(--text-80);
+	color: black;
 }
 
 .btn-base {

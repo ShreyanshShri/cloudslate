@@ -121,13 +121,16 @@ const ProfilePage = () => {
 							<p>{user.email}</p>
 						</div>
 						<div id="pi-right">
-							<button className="btn btn-darker" onClick={logOut}>
+							<button className="action-btn btn-darker" onClick={logOut}>
 								Log Out
 							</button>
 						</div>
 					</div>
 					<Link to="/editor/new">
-						<button className="btn btn-dark" style={{ marginBottom: "10px" }}>
+						<button
+							className="action-btn btn-dark"
+							style={{ marginBottom: "10px" }}
+						>
 							New File
 						</button>
 					</Link>

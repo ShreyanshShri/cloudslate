@@ -57,7 +57,7 @@ const Login = () => {
 			/>
 			<br />
 			<button
-				className="btn btn-dark"
+				className="action-btn btn-dark"
 				style={{ marginTop: "10px" }}
 				onClick={login}
 			>

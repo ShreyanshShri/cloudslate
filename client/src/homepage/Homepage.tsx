@@ -15,8 +15,8 @@ const Homepage = () => {
 						Designed to empower educators, teams, and creators. <br />
 						Collaborate seamlessly, anytime and anywhere.
 					</p>
-					<Link to="/register">
-						<button className="btn btn-darker">Get Started</button>
+					<Link to="/auth/register">
+						<button className="primary-btn">Get Started</button>
 					</Link>
 				</div>
 				<div id="hero-right">

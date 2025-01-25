@@ -9,6 +9,7 @@ import ProfilePage from "./auth/ProfilePage";
 import ViewPage from "./viewmode/index";
 import Alert from "./common/Alert";
 import Confirm from "./common/Confirm";
+import PageNotFound from "./common/PageNotFound";
 
 import "./App.css";
 
@@ -33,6 +34,7 @@ function App() {
 				<Route path="/auth/register" element={<Signup />} />
 				<Route path="/auth/login" element={<Login />} />
 				<Route path="/auth/profile" element={<ProfilePage />} />
+				<Route path="*" element={<PageNotFound />} />
 				{/* <Route path="*" element={<NoPage />} /> */}
 			</Routes>
 		</BrowserRouter>

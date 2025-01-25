@@ -52,7 +52,7 @@ const FileListCard = ({
 			</Link>
 			<div className="file-list-card-options">
 				<button
-					className="btn btn-dark"
+					className="action-btn btn-dark"
 					onClick={() => confirmDeleteFile(id, index)}
 				>
 					Delete

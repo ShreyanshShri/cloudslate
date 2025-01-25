@@ -35,11 +35,11 @@ const Confirm = ({ message }: props) => {
 					<div className="alert-message">{message}</div>
 				</div>
 				<div className="alert-footer">
-					<button className="btn btn-dark" onClick={() => respond(true)}>
+					<button className="action-btn btn-dark" onClick={() => respond(true)}>
 						Yes
 					</button>
 					<button
-						className="btn btn-dark"
+						className="action-btn btn-dark"
 						style={{ marginLeft: "10px" }}
 						onClick={() => respond(false)}
 					>

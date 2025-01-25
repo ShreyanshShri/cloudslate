@@ -43,7 +43,11 @@ const Alert = ({ type, message }: props) => {
 					<div className="alert-message">{message}</div>
 				</div>
 				<div className="alert-footer">
-					<button className="btn btn-dark" onClick={clearAlert} autoFocus>
+					<button
+						className="action-btn btn-dark"
+						onClick={clearAlert}
+						autoFocus
+					>
 						Close
 					</button>
 				</div>
