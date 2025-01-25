@@ -1,6 +1,6 @@
 import useEditHistoryStore from "../EditsHistoryStore";
 
-import { file_type, quiz_type } from "../../types/fileTypes";
+import { file_type, quiz_type, user_type } from "../../types/fileTypes";
 
 const setFile = (set: any, file: file_type) => {
 	set((state: any) => ({
@@ -15,6 +15,16 @@ const setFileVisibility = (set: any, isPublic: boolean) => {
 		file: {
 			...state.file,
 			public: isPublic,
+		},
+	}));
+};
+
+const setContributorsList = (set: any, contributors: user_type[]) => {
+	set((state: any) => ({
+		...state,
+		file: {
+			...state.file,
+			contributors,
 		},
 	}));
 };
@@ -201,6 +211,7 @@ const saveWhiteboard = (set: any, index: number, snapshot: any) => {
 export {
 	setFile,
 	setFileVisibility,
+	setContributorsList,
 	deleteEntity,
 	moveEntity,
 	pushTextEditor,

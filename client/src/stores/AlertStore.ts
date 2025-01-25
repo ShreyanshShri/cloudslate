@@ -76,6 +76,19 @@ const setResponse = (set: any, response: boolean) => {
 	}));
 };
 // to reset the data
+/*
+	useEffect(() => {
+		if (confirm.hasResponded) {
+			if (confirm.response === true) {
+				// your yes logic here
+			} else {
+				// your no logic here 
+			}
+		}
+	}, [confirm]);
+*/
+
+// he has to clear the confirm.... all the time you have to clear the confirm
 const clearConfirm = (set: any) => {
 	set((state: alertStoreType) => ({
 		...state,

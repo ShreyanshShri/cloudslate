@@ -110,6 +110,36 @@
 } */
 
 /* memberlist starts */
+
+#input-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--dark);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#input-wrapper button {
+	margin: 0;
+	width: 18%;
+	height: 100%;
+	/* padding-left: 2px;
+	padding-right: 2px; */
+}
+
+#contributor-input {
+	outline: none;
+	width: 70%;
+	border: none;
+	display: block;
+	padding: 10px 10px;
+	color: var(--text-75);
+	letter-spacing: 1px;
+	font-weight: lighter;
+	font-size: 16px;
+	background: none;
+}
+
 .member-card {
 	display: flex;
 	align-items: center;
@@ -132,6 +162,29 @@
 	border: 1px solid rgba(255, 255, 255, 0.4);
 	border-radius: 50px;
 	background-color: rgb(20, 20, 20);
+}
+
+.member-card-details {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+}
+
+.member-card-name {
+	color: var(--text-65);
+	font-weight: 300;
+	letter-spacing: 1.1px;
+}
+
+.member-card-delete {
+	cursor: pointer;
+	opacity: 0.3;
+}
+
+.member-card-delete:hover {
+	opacity: 0.7;
 }
 
 /* memberlist ends */

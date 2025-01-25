@@ -40,6 +40,10 @@ body {
 	background: #525252;
 }
 
+.block {
+	display: block;
+}
+
 .action-btn {
 	padding: 8px;
 	height: fit-content;

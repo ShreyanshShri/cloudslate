@@ -2,11 +2,12 @@ import { create } from "zustand";
 import zukeeper from "zukeeper";
 import moment from "moment";
 
-import { file_type, quiz_type } from "../types/fileTypes";
+import { file_type, quiz_type, user_type } from "../types/fileTypes";
 
 import {
 	setFile,
 	setFileVisibility,
+	setContributorsList,
 	deleteEntity,
 	moveEntity,
 	pushTextEditor,
@@ -23,6 +24,7 @@ export type fileStoreType = {
 	file: file_type;
 	setFile: (file: file_type) => void;
 	setFileVisibility: (isPublic: boolean) => void;
+	setContributorsList: (contributors: user_type[]) => void;
 	displayQuizMaker: boolean;
 	deleteEntity: (index: number) => void;
 	moveEntity: (index: number, dirn: string) => void;
@@ -40,7 +42,7 @@ const useFileStore = create<fileStoreType>(
 	zukeeper((set: any) => ({
 		file: {
 			admin: "User",
-			contributers: [],
+			contributors: [],
 			createdAt: moment().format("YYYY-MM-DD"),
 			public: false,
 			title: "New File",
@@ -48,6 +50,8 @@ const useFileStore = create<fileStoreType>(
 		},
 		setFile: (file: file_type) => setFile(set, file),
 		setFileVisibility: (isPublic: boolean) => setFileVisibility(set, isPublic),
+		setContributorsList: (contributors: user_type[]) =>
+			setContributorsList(set, contributors),
 		displayQuizMaker: false,
 		deleteEntity: (index: number) => deleteEntity(set, index),
 		moveEntity: (index: number, dirn: string) => moveEntity(set, index, dirn),

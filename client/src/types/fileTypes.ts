@@ -8,8 +8,8 @@ type user_type = {
 	_id?: any;
 	username: string;
 	email: string;
-	password: string;
-	files: [file_type] | [string];
+	password?: string;
+	files?: [file_type] | [string];
 };
 
 type entity_type = {
@@ -21,10 +21,11 @@ type entity_type = {
 type file_type = {
 	_id?: any;
 	admin: user_type | string;
-	contributers: [user_type] | [string];
+	contributors: [user_type] | [string];
 	createdAt: Date;
 	public: boolean;
 	title: string;
+	desc?: string;
 	entities: [entity_type] | [string];
 };
 

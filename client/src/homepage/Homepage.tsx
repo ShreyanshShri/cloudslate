@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import "./homepage.css";
 
-import logo from "../../public/images/cloudslate-logo.png";
+import logo from "../assets/images/cloudslate-logo.png";
 
 const Homepage = () => {
 	return (

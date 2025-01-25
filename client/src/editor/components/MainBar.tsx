@@ -20,7 +20,7 @@ function MainBar() {
 	// 		if (res_file.admin._id == user_id) {
 	// 			has_access = true;
 	// 		}
-	// 		res_file.contributers.forEach((con: any) => {
+	// 		res_file.contributors.forEach((con: any) => {
 	// 			if (con._id == user_id) has_access = true;
 	// 		});
 	// 		setHasWriteAccess(has_access);
