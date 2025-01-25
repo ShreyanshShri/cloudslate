@@ -8,12 +8,16 @@ export const validateReadWriteAccess = async (
 	const user_id = req.user_id;
 
 	try {
-		const admin: any = await file?.admin;
-		// const contributers: any = await file?.populate("contributers");
-		// contributers.find((contributer: any) => contributer._id === req.user_id)
+		const admin: any = file?.admin;
+		const contributors: any = file?.contributors;
 
 		// file is public or private - grant write access to only admins and contributors
-		if (admin._id == user_id) {
+		if (
+			admin._id == user_id ||
+			contributors.find(
+				(contributor: any) => contributor._id.toString() == user_id.toString()
+			) !== undefined
+		) {
 			next();
 			return;
 		}

@@ -24,12 +24,16 @@ export const getFile = async (req: any, res: any, next: any): Promise<any> => {
 
 	try {
 		// get file
-		const file = await File.findById(file_id).populate({
-			path: "admin",
-			select: "username email files",
-			options: { sort: { createdAt: -1 } },
-		});
-		req.file = file;
+		const fully_populated = await File.findById(file_id)
+			.populate({
+				path: "admin",
+				select: "username email",
+			})
+			.populate({
+				path: "contributors",
+				select: "username email",
+			});
+		req.file = fully_populated;
 		next();
 	} catch (err: any) {
 		// catch error (invalid file id probably)

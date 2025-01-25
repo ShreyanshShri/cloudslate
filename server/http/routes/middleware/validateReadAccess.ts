@@ -4,9 +4,8 @@ export const validateReadAccess = async (req: any, res: any, next: any) => {
 	const user_id = req.user_id;
 
 	try {
-		const admin: any = await file?.admin;
-		// const contributers: any = await file?.populate("contributers");
-		// contributers.find((contributer: any) => contributer._id === req.user_id)
+		const admin: any = file.admin;
+		const contributors: any = file.contributors;
 
 		// if file is public - grant read access to everyone
 		if (file?.public) {
@@ -14,7 +13,12 @@ export const validateReadAccess = async (req: any, res: any, next: any) => {
 			return;
 		}
 		// if file is private - grant read access to admins
-		else if (admin._id == user_id) {
+		else if (
+			admin?._id == user_id ||
+			contributors.find(
+				(contributor: any) => contributor._id.toString() == user_id.toString()
+			) != undefined
+		) {
 			next();
 			return;
 		}
