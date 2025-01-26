@@ -50,7 +50,7 @@ const Quiz = ({ data, index }: props) => {
 	return (
 		<div className="entity-wrapper mb-2">
 			<div className="entity-top-bar">
-				<div className="entitiy-title">Quiz</div>
+				<div className="entity-title">Quiz</div>
 				<Controls index={index} />
 				<div className="entity-tools" style={{ width: "60px" }}>
 					{/* <span className="control-btns" onClick={saveState}><FontAwesomeIcon icon={ faLock } /></span>

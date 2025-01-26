@@ -31,7 +31,7 @@ const Whiteboard = ({ index, snapshot }: props) => {
 			}
 		>
 			<div className="entity-top-bar">
-				<div className="entitiy-title">Whiteboard</div>
+				<div className="entity-title">Whiteboard</div>
 				<Controls index={index} />
 				<div className="entity-tools" style={{ width: "90px" }}>
 					<span className="control-btns" onClick={() => setSave(true)}>

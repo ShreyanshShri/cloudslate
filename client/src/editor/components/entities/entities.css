@@ -20,6 +20,10 @@
 	color: var(--text-90);
 }
 
+.entity-title {
+	color: var(--text-55);
+}
+
 .controls {
 	position: absolute;
 	top: 50%;
@@ -105,7 +109,7 @@
 	padding: 4px;
 	border-radius: 20px;
 	font-size: 12px;
-	color: var(--text-80);
+	color: var(--text-45);
 	margin-left: 10px;
 	transition: 0.1s;
 	cursor: pointer;
@@ -113,6 +117,7 @@
 
 .control-btns:hover {
 	background: var(--darker);
+	color: var(--text-90);
 }
 /* control ends */
 

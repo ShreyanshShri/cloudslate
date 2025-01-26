@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 import User from "../../../models/User";
 import { getUserId } from "../../middleware/getUserId";
+import { getFile } from "../../middleware/getFile";
 
 const router = express.Router();
 
@@ -86,7 +87,7 @@ router.get("/get", getUserId, async (req: any, res: any) => {
 	// let user = await req.user.populate("files").sort({ files: -1 });
 	const user = await req.user.populate({
 		path: "files",
-		select: "title createdAt",
+		select: "title desc createdAt",
 		options: { sort: { createdAt: -1 } },
 	});
 	// user = await user.
@@ -95,6 +96,86 @@ router.get("/get", getUserId, async (req: any, res: any) => {
 		user,
 	});
 	return;
+});
+
+router.post("/add-bookmark", getUserId, getFile, async (req: any, res) => {
+	console.log(
+		"==================Reached: post /auth/add-bookmark=================="
+	);
+	const { user, file } = req;
+
+	try {
+		if (!user) {
+			res.status(400).json({
+				message: "No user found. Please Login again.",
+			});
+			return;
+		}
+
+		console.log(user.bookmarks);
+		const check = user.bookmarks.find(
+			(bookmark: any) => bookmark.toString() === file._id.toString()
+		);
+
+		// bookmark already exists
+		if (check !== undefined && check !== null) {
+			res.status(200).json({
+				message: "Bookmark is already added",
+			});
+			return;
+		}
+
+		user.bookmarks.unshift(file._id);
+		await user.save();
+		res.status(200).json({
+			message: "Successfully added bookmark.",
+			bookmark: {
+				id: file._id,
+				title: file.title,
+				desc: file.desc,
+				createdAt: file.createdAt,
+			},
+		});
+		return;
+	} catch (err: any) {
+		console.error(err.message);
+		res.status(400).json({
+			message: err.message,
+		});
+		return;
+	}
+});
+
+router.post("/remove-bookmark", getUserId, getFile, async (req: any, res) => {
+	console.log(
+		"==================Reached: post /auth/remove-bookmark=================="
+	);
+	const { user, file } = req;
+
+	try {
+		if (!user) {
+			res.status(400).json({
+				message: "No user found. Please Login again.",
+			});
+			return;
+		}
+
+		const filtered = user.bookmarks.filter(
+			(bookmark: any) => bookmark.toString() !== file._id.toString()
+		);
+		user.bookmarks = filtered;
+		await user.save();
+		res.status(200).json({
+			message: "Successfully removed bookmark.",
+		});
+		return;
+	} catch (err: any) {
+		console.error(err.message);
+		res.status(400).json({
+			message: err.message,
+		});
+		return;
+	}
 });
 
 export default router;

@@ -10,6 +10,7 @@ import throttleFunction from "../../../utils/throttle_func";
 import useFileStore from "../../../stores/FileStore";
 
 import "./desmos.css";
+import "./entities.css";
 
 type props = {
 	index: number;
@@ -66,7 +67,7 @@ const Plotter = ({ index }: props) => {
 	return (
 		<div className="entity-wrapper mb-2">
 			<div className="entity-top-bar">
-				<div className="entitiy-title">Plotter</div>
+				<div className="entity-title">Plotter</div>
 				<Controls index={index} />
 				<div className="entity-tools" style={{ width: "30px" }}>
 					<span className="control-btns" onClick={takeScreenShot}>

@@ -1,7 +1,7 @@
 #main-bar {
 	flex-grow: 3;
-	border-left: 1px solid rgba(80, 80, 80, 0.8);
-	border-right: 1px solid rgba(80, 80, 80, 0.8);
+	/* border-left: 1px solid rgba(80, 80, 80, 0.8);
+	border-right: 1px solid rgba(80, 80, 80, 0.8); */
 }
 
 #right-bar,
@@ -101,4 +101,5 @@
 	font-weight: bold;
 	font-size: 20px;
 	letter-spacing: 2px;
+	color: var(--text-45);
 }

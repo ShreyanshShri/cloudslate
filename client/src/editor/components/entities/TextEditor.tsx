@@ -82,7 +82,7 @@ const TextEditor = ({ index }: props) => {
 	return (
 		<div className="entity-wrapper mb-2">
 			<div className="entity-top-bar">
-				<div className="entitiy-title">Text Editor</div>
+				<div className="entity-title">Text Editor</div>
 				<Controls index={index} />
 				<div className="entity-tools" style={{ width: "60px" }}>
 					<div className="clip-wrapper">

@@ -12,8 +12,13 @@
 	height: 20px;
 	border-radius: 50px;
 	border: none;
-	background: var(--dark);
+	background: var(--base-color);
 	cursor: pointer;
+}
+
+.collapse-btn:hover {
+	color: black;
+	background-color: var(--text-85);
 }
 
 .widget-wrapper-header {
@@ -22,7 +27,7 @@
 	padding: 10px 20px;
 	background-color: var(--darker);
 	border-radius: 4px 4px 0px 0px;
-	color: var(--text-85);
+	color: var(--text-55);
 }
 
 .widget-wrapper {
@@ -47,7 +52,7 @@
 	background: var(--dark);
 	padding: 10px 25px;
 	cursor: pointer;
-	color: var(--text-75);
+	color: var(--text-45);
 }
 
 /* item selector ends */
@@ -151,6 +156,7 @@
 
 .member-card span {
 	margin-left: 10px;
+	font-size: 14px;
 }
 
 .avatar {
@@ -173,7 +179,7 @@
 }
 
 .member-card-name {
-	color: var(--text-65);
+	color: var(--text-55);
 	font-weight: 300;
 	letter-spacing: 1.1px;
 }

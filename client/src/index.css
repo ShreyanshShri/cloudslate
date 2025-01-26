@@ -30,3 +30,38 @@ html {
 	--darker: #0c0c0c;
 	--darkest: #0c0c0c;
 }
+
+@font-face {
+	font-family: "Ubuntu";
+	src: local("Ubuntu"), url(./fonts/Ubuntu-Regular.ttf) format("truetype");
+}
+@font-face {
+	font-family: "Ubuntu-Bold";
+	src: local("Ubuntu"), url(./fonts/Ubuntu-Bold.ttf) format("truetype");
+	font-weight: bold;
+}
+@font-face {
+	font-family: "Ubuntu-Italic";
+	src: local("Ubuntu"), url(./fonts/Ubuntu-Italic.ttf) format("truetype");
+	font-style: italic;
+}
+@font-face {
+	font-family: "Ubuntu-Light";
+	src: local("Ubuntu"), url(./fonts/Ubuntu-Light.ttf) format("truetype");
+	font-weight: lighter;
+}
+@font-face {
+	font-family: "Ubuntu-LightItalic";
+	src: local("Ubuntu"), url(./fonts/Ubuntu-LightItalic.ttf) format("truetype");
+	font-style: italic;
+	font-weight: lighter;
+}
+@font-face {
+	font-family: "Ubuntu-Medium";
+	src: local("Ubuntu"), url(./fonts/Ubuntu-Medium.ttf) format("truetype");
+}
+@font-face {
+	font-family: "Ubuntu-MediumItalic";
+	src: local("Ubuntu"), url(./fonts/Ubuntu-MediumItalic.ttf) format("truetype");
+	font-style: italic;
+}
