@@ -3,16 +3,22 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faGear } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faGear, faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark as faBookmarkRegular } from "@fortawesome/free-regular-svg-icons";
 
 import useFileStore from "../../../stores/FileStore";
 import useEditHistoryStore from "../../../stores/EditsHistoryStore";
-
-import "./layout.css";
 import useSettingsStore from "../../../stores/SettingsStore";
 
+import {
+	addRemoveBookmark,
+	getBookmarkStatus,
+} from "../../../utils/userApiCalls";
+
+import "./layout.css";
+
 const Header = () => {
-	const [title, setTitle] = useState<string>("");
+	const [bookmarked, setBookmarked] = useState<boolean>(false);
 
 	const { id } = useParams();
 	const file = useFileStore((state: any) => state.file);
@@ -25,10 +31,16 @@ const Header = () => {
 		(state: any) => state.setDisplaySettings
 	);
 
+	// get initial bookmark value
 	useEffect(() => {
-		setTitle(file.title);
-	}, [file]);
+		const getInitialBookmarkStatus = async () => {
+			const res = await getBookmarkStatus(id as string);
+			setBookmarked(res);
+		};
+		getInitialBookmarkStatus();
+	}, []);
 
+	// push edit changes to server;
 	useEffect(() => {
 		if (historyLength % 5 == 0) {
 			pushToServer(id);
@@ -45,13 +57,23 @@ const Header = () => {
 		};
 	}, [historyLength]);
 
+	// handle bookmark button click
+	const handleBookmarkClick = async () => {
+		console.log("handling bookmark click");
+		const res = await addRemoveBookmark(
+			id as string,
+			bookmarked ? "remove" : "add"
+		);
+		setBookmarked(res);
+	};
+
 	return (
 		<div id="header">
 			<div>
 				<span id="heading">Cloud Slate</span>
 			</div>
 			<div id="header-center">
-				<span id="header-title">{title}</span>
+				<span id="header-title">{file.title}</span>
 				<span id="createdAt">
 					{moment(file?.createdAt).format("DD-MM-YYYY")}
 				</span>
@@ -64,13 +86,23 @@ const Header = () => {
 					Save
 				</button>
 				<FontAwesomeIcon
+					title={bookmarked ? "Bookmarked" : "Bookmark"}
+					className="header-icon"
+					icon={bookmarked ? faBookmark : faBookmarkRegular}
+					onClick={() => handleBookmarkClick()}
+				/>
+				<FontAwesomeIcon
 					title="Editor Settings"
-					id="header-settings-icon"
+					className="header-icon"
 					icon={faGear}
 					onClick={() => setDisplaySettings(true)}
 				/>
 				<Link to={`/view/${id}`} id="eye-emoji" title="View Mode">
-					<FontAwesomeIcon icon={faEye} />
+					<FontAwesomeIcon
+						title="Open in view-mode"
+						className="header-icon"
+						icon={faEye}
+					/>
 				</Link>
 			</div>
 		</div>

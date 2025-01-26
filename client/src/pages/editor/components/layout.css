@@ -78,15 +78,13 @@
 	/* margin-right: 10px; */
 }
 
-#eye-emoji,
-#header-settings-icon {
+.header-icon {
 	margin-left: 10px;
 	color: var(--text-55);
 	cursor: pointer;
 }
 
-#eye-emoji:hover,
-#header-settings-icon:hover {
+.header-icon:hover {
 	color: var(--text-75);
 }
 

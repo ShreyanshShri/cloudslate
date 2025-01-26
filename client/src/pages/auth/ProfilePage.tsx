@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
 
 import { file_type } from "../../types/fileTypes";
 
 import useAlertStore, { alertStoreType } from "../../stores/AlertStore";
 
-import FileListCard from "./components/FileListCard";
+import FileList from "./components/FileList";
+import BookmarkedList from "./components/BookmarkedList";
 import Loader from "../common/Loader";
+
+import { deleteFile } from "../../utils/fileApiCalls";
+import { getUser, addRemoveBookmark } from "../../utils/userApiCalls";
 
 import "./authStyle.css";
 
@@ -19,45 +22,18 @@ const ProfilePage = () => {
 		id: null,
 		index: null,
 	});
+	const [listType, setListType] = useState<"files" | "bookmarks">("files");
 
 	const confirm = useAlertStore((state: alertStoreType) => state.confirm);
-	const setAlert = useAlertStore((state: alertStoreType) => state.setAlert);
 	const setConfirm = useAlertStore((state: alertStoreType) => state.setConfirm);
-	const clearConfirm = useAlertStore(
-		(state: alertStoreType) => state.clearConfirm
-	);
 
 	useEffect(() => {
-		getUser();
+		getUserAndUpdateUI();
 	}, []);
 
 	useEffect(() => {
-		if (confirm.hasResponded) {
-			if (confirm.response === true) {
-				deleteFile();
-			}
-		}
+		removeDeletedFile(confirm);
 	}, [confirm]);
-
-	const getUser = async () => {
-		try {
-			const response = await axios.get(
-				`${import.meta.env.VITE_SERVER_URL}/auth/get`,
-				{
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem("token")}`,
-					},
-				}
-			);
-			setUser(response.data.user);
-			setLoading(() => false);
-			console.log(response.data);
-		} catch (err: any) {
-			console.error(err.response.data);
-			setAlert(err.response.data.message, "error");
-			setRedirect(true);
-		}
-	};
 
 	const confirmDeleteFile = (id: string, index: number) => {
 		setConfirm("Are you sure you want to delete this file");
@@ -67,38 +43,51 @@ const ProfilePage = () => {
 		});
 	};
 
-	const deleteFile = async () => {
-		try {
-			const response = await axios.delete(
-				`${import.meta.env.VITE_SERVER_URL}/editor/delete?id=${deleteData.id}`,
-				{
-					data: {
-						index: deleteData.index,
-					},
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem("token")}`,
-					},
+	const removeDeletedFile = async (confirm: any) => {
+		if (confirm.hasResponded) {
+			if (confirm.response === true) {
+				const res = await deleteFile(deleteData.id as string);
+				if (res == true) {
+					let filtered: file_type[] = [];
+					for (let x = 0; x < user.files.length; x++) {
+						if (x !== deleteData.index) filtered.push(user.files[x]);
+					}
+					setUser((prev: any) => ({ ...prev, files: filtered }));
+					setDeleteData({
+						id: null,
+						index: null,
+					});
+				} else {
+					setDeleteData({
+						id: null,
+						index: null,
+					});
 				}
-			);
-			clearConfirm();
-			let filtered: file_type[] = [];
-			for (let x = 0; x < user.files.length; x++) {
-				if (x !== deleteData.index) filtered.push(user.files[x]);
 			}
-			setAlert(response.data.message, "success");
-			setUser((prev: any) => ({ ...prev, files: filtered }));
-			setDeleteData({
-				id: null,
-				index: null,
-			});
-		} catch (err: any) {
-			console.error(err.response.data);
-			clearConfirm();
-			setDeleteData({
-				id: null,
-				index: null,
-			});
-			setAlert(err.response.data.message, "error");
+		}
+	};
+
+	const getUserAndUpdateUI = async () => {
+		const res = await getUser();
+		if (res.error == true) {
+			setRedirect(true);
+		} else {
+			setUser(res);
+			setLoading(() => false);
+		}
+	};
+
+	const unBookmark = async (file_id: string, index: number) => {
+		console.log("unbookmarking");
+		const res = await addRemoveBookmark(file_id, "remove");
+		console.log(res);
+		if (!res) {
+			let filtered: file_type[] = [];
+			for (let x = 0; x < user.bookmarks.length; x++) {
+				if (x !== index) filtered.push(user.bookmarks[x]);
+			}
+			console.log(filtered);
+			setUser((prev: any) => ({ ...prev, bookmarks: filtered }));
 		}
 	};
 
@@ -134,16 +123,27 @@ const ProfilePage = () => {
 							New File
 						</button>
 					</Link>
-					{user.files.map((file: file_type, index: number) => (
-						<FileListCard
-							key={index}
-							index={index}
-							id={file._id}
-							title={file.title}
-							createdAt={file.createdAt}
-							confirmDeleteFile={confirmDeleteFile}
-						/>
-					))}
+					<div id="profile-toggle">
+						<div
+							className="profile-toggle-btn"
+							id={listType === "files" ? "active" : ""}
+							onClick={() => setListType("files")}
+						>
+							My Files
+						</div>
+						<div
+							className="profile-toggle-btn"
+							id={listType === "bookmarks" ? "active" : ""}
+							onClick={() => setListType("bookmarks")}
+						>
+							Bookmarks
+						</div>
+					</div>
+					{listType == "files" ? (
+						<FileList confirmDeleteFile={confirmDeleteFile} user={user} />
+					) : (
+						<BookmarkedList unBookmark={unBookmark} user={user} />
+					)}
 				</div>
 			)}
 		</div>

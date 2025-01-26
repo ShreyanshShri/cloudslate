@@ -77,6 +77,24 @@ a {
 	margin-bottom: 0;
 }
 
+#profile-toggle {
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.profile-toggle-btn {
+	padding: 10px 10px;
+	color: var(--text-75);
+	cursor: pointer;
+	transition: 0.4s;
+}
+
+#active {
+	background: var(--dark);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-bottom: 1px solid var(--text-80);
+}
+
 .file-list-card {
 	display: block;
 	border: 1px solid rgba(255, 255, 255, 0.2);
@@ -89,6 +107,11 @@ a {
 	color: rgba(255, 255, 255, 0.89);
 }
 
+.file-list-card-link {
+	text-decoration: none;
+	width: 100%;
+}
+
 .file-list-card-createdAt {
 	color: rgba(255, 255, 255, 0.3);
 	letter-spacing: 1.2px;
@@ -97,5 +120,30 @@ a {
 }
 
 .file-list-card-title {
-	color: rgba(255, 255, 255, 0.8);
+	color: var(--text-80);
+}
+
+.file-list-card-desc {
+	text-decoration: none;
+	color: var(--text-65);
+}
+
+.file-list-card-options {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.file-list-card-icon {
+	color: var(--text-60);
+	cursor: pointer;
+	margin-left: 20px;
+}
+
+.file-list-card-icon:hover {
+	color: var(--text-80);
+}
+
+.delete-icon:hover {
+	color: red;
 }

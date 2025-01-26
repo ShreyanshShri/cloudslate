@@ -16,6 +16,8 @@ import {
 	deleteFile,
 } from "./utils/apiCalls";
 
+import SettingsItem from "./components/SettingsItem";
+
 import "./common_styles.css";
 
 const Settings = () => {
@@ -68,74 +70,58 @@ const Settings = () => {
 					</span>
 				</div>
 				<div id="popup-body">
-					<div className="settings-section">
-						<div className="settings-section-inner">
-							<div className="settings-body">
-								<span>Visibility</span>
-								<label className="switch" title="Make public">
-									<input
-										type="checkbox"
-										checked={isPublic}
-										onChange={() => changeVisibility(id as string, !isPublic)}
-									/>
-									<span className="slider round"></span>
-								</label>
-							</div>
-						</div>
-					</div>
-					<div className="settings-section">
-						<div className="settings-section-inner">
-							<div className="settings-title">Change Title</div>
-							<div className="settings-body">
-								<input
-									type="text"
-									className="std-input"
-									placeholder="Title"
-									value={title}
-									onChange={(e: any) => setTitle(e.target.value)}
-								/>
-								<button
-									className="action-btn block settings-btn"
-									onClick={() => changeTitle(id as string, title)}
-								>
-									Save
-								</button>
-							</div>
-						</div>
-					</div>
-					<div className="settings-section">
-						<div className="settings-section-inner">
-							<div className="settings-title">Change Description</div>
-							<div className="settings-body">
-								<textarea
-									className="std-input"
-									placeholder="Enter Description"
-									value={desc}
-									onChange={(e: any) => setDesc(e.target.value)}
-								/>
-								<button
-									className="action-btn block settings-btn"
-									onClick={() => changeDesc(id as string, desc)}
-								>
-									Save
-								</button>
-							</div>
-						</div>
-					</div>
-					<div className="settings-section">
-						<div className="settings-section-inner">
-							<div className="settings-title"></div>
-							<div className="settings-body">
-								<span>Delete this File</span>
-								<button
-									className="action-btn block settings-btn"
-									onClick={confirmDeleteFile}
-								>
-									Delete
-								</button>
-							</div>
-						</div>
-					</div>
+					<SettingsItem>
+						<span>Visibility</span>
+						<label className="switch" title="Make public">
+							<input
+								type="checkbox"
+								checked={isPublic}
+								onChange={() => changeVisibility(id as string, !isPublic)}
+							/>
+							<span className="slider round"></span>
+						</label>
+					</SettingsItem>
+
+					<SettingsItem title="Change Title">
+						<input
+							type="text"
+							className="std-input"
+							placeholder="Title"
+							value={title}
+							onChange={(e: any) => setTitle(e.target.value)}
+						/>
+						<button
+							className="action-btn block settings-btn"
+							onClick={() => changeTitle(id as string, title)}
+						>
+							Save
+						</button>
+					</SettingsItem>
+
+					<SettingsItem title="Change Description">
+						<textarea
+							className="std-input"
+							placeholder="Enter Description"
+							value={desc}
+							onChange={(e: any) => setDesc(e.target.value)}
+						/>
+						<button
+							className="action-btn block settings-btn"
+							onClick={() => changeDesc(id as string, desc)}
+						>
+							Save
+						</button>
+					</SettingsItem>
+
+					<SettingsItem>
+						<span>Delete this File</span>
+						<button
+							className="action-btn block delete-btn"
+							onClick={confirmDeleteFile}
+						>
+							Delete
+						</button>
+					</SettingsItem>
 				</div>
 			</div>
 		</div>

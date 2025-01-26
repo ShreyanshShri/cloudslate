@@ -120,6 +120,19 @@ describe("Authentication", () => {
 		expect(response.status).toBe(200);
 	});
 
+	test("User is able to see if a file is bookmarked.", async () => {
+		const response = await axios.get(
+			`${BACKEND_URL}/api/v1/auth/check-bookmark?id=${file._id}`,
+			{
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		);
+		expect(response.status).toBe(200);
+		expect(response.data.status).toBe(true);
+	});
+
 	test("User is not able to re-bookmark a file", async () => {
 		await axios.post(
 			`${BACKEND_URL}/api/v1/auth/add-bookmark?id=${file._id}`,

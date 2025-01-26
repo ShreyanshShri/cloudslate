@@ -85,17 +85,64 @@ router.get("/get", getUserId, async (req: any, res: any) => {
 		return;
 	}
 	// let user = await req.user.populate("files").sort({ files: -1 });
-	const user = await req.user.populate({
-		path: "files",
-		select: "title desc createdAt",
-		options: { sort: { createdAt: -1 } },
-	});
+	const user = await User.findById(req.user_id)
+		.populate({
+			path: "files",
+			select: "title desc createdAt",
+			options: { sort: { createdAt: -1 } },
+		})
+		.populate({
+			path: "bookmarks",
+			select: "title desc createdAt",
+		});
 	// user = await user.
 	res.status(200).json({
 		message: "Success",
 		user,
 	});
 	return;
+});
+
+router.get("/check-bookmark", getUserId, getFile, async (req: any, res) => {
+	console.log(
+		"==================Reached: post /auth/get-bookmark=================="
+	);
+	const { user, file } = req;
+
+	try {
+		if (!user) {
+			res.status(400).json({
+				message: "No user found. Please Login again.",
+			});
+			return;
+		}
+
+		const check = user.bookmarks.find(
+			(bookmark: any) => bookmark.toString() === file._id.toString()
+		);
+
+		// bookmark doesnt exists
+		if (check == undefined) {
+			res.status(200).json({
+				message: "This file is not bookmarked.",
+				status: false,
+			});
+			return;
+		}
+
+		res.status(200).json({
+			message: "This file is bookmarked.",
+			status: true,
+		});
+		return;
+		return;
+	} catch (err: any) {
+		console.error(err.message);
+		res.status(400).json({
+			message: err.message,
+		});
+		return;
+	}
 });
 
 router.post("/add-bookmark", getUserId, getFile, async (req: any, res) => {
@@ -118,9 +165,10 @@ router.post("/add-bookmark", getUserId, getFile, async (req: any, res) => {
 		);
 
 		// bookmark already exists
-		if (check !== undefined && check !== null) {
+		if (check !== undefined) {
 			res.status(200).json({
 				message: "Bookmark is already added",
+				status: true,
 			});
 			return;
 		}
@@ -135,6 +183,7 @@ router.post("/add-bookmark", getUserId, getFile, async (req: any, res) => {
 				desc: file.desc,
 				createdAt: file.createdAt,
 			},
+			status: true,
 		});
 		return;
 	} catch (err: any) {
@@ -167,6 +216,7 @@ router.post("/remove-bookmark", getUserId, getFile, async (req: any, res) => {
 		await user.save();
 		res.status(200).json({
 			message: "Successfully removed bookmark.",
+			status: false,
 		});
 		return;
 	} catch (err: any) {
