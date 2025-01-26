@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import useAlertStore, { alertStoreType } from "./stores/AlertStore";
 
-import Editor from "./editor/Editor";
-import Homepage from "./homepage/Homepage";
-import Signup from "./auth/Signup";
-import Login from "./auth/Login";
-import ProfilePage from "./auth/ProfilePage";
-import ViewPage from "./viewmode/index";
-import Alert from "./common/Alert";
-import Confirm from "./common/Confirm";
-import PageNotFound from "./common/PageNotFound";
+import Editor from "./pages/editor/Editor";
+import Homepage from "./pages/homepage/Homepage";
+import Signup from "./pages/auth/Signup";
+import Login from "./pages/auth/Login";
+import ProfilePage from "./pages/auth/ProfilePage";
+import ViewPage from "./pages/viewmode/index";
+import Alert from "./pages/common/Alert";
+import Confirm from "./pages/common/Confirm";
+import PageNotFound from "./pages/common/PageNotFound";
 
 import "./App.css";
 
