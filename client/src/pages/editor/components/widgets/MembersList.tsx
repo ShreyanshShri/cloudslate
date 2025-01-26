@@ -14,15 +14,16 @@ const MembersList = () => {
 	const { id } = useParams();
 	const [val, setVal] = useState<string>("");
 
-	const handleKeyDown = (e: any) => {
+	const handleKeyDown = async (e: any) => {
 		if (e.keyCode == 13) {
-			addRemoveContributor(id as string, val, "add");
+			addContributor();
+			return;
 		}
-		setVal("");
+		setVal(e.target.value);
 	};
 
-	const addContributor = () => {
-		addRemoveContributor(id as string, val, "add");
+	const addContributor = async () => {
+		await addRemoveContributor(id as string, val, "add");
 		setVal("");
 	};
 
