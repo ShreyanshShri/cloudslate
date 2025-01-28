@@ -13,7 +13,7 @@ import useSettingsStore from "../../../stores/SettingsStore";
 import {
 	addRemoveBookmark,
 	getBookmarkStatus,
-} from "../../../utils/userApiCalls";
+} from "../../../api_calls/userApiCalls";
 
 import "./layout.css";
 
@@ -35,7 +35,7 @@ const Header = () => {
 	useEffect(() => {
 		const getInitialBookmarkStatus = async () => {
 			const res = await getBookmarkStatus(id as string);
-			setBookmarked(res);
+			setBookmarked(res.data.status);
 		};
 		getInitialBookmarkStatus();
 	}, []);
@@ -64,7 +64,7 @@ const Header = () => {
 			id as string,
 			bookmarked ? "remove" : "add"
 		);
-		setBookmarked(res);
+		setBookmarked(res.data.status);
 	};
 
 	return (

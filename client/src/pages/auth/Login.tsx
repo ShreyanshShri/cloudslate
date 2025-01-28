@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import axios from "axios";
 
-import useAlertStore from "../../stores/AlertStore";
+import { login_user } from "./component_functions/login";
 
 import "./authStyle.css";
 
@@ -10,27 +9,6 @@ const Login = () => {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [redirect, setRedirect] = useState<boolean>(false);
-
-	const setAlert = useAlertStore((state: any) => state.setAlert);
-	// const clearAlert = useAlertStore((state: any) => state.clearAlert);
-
-	const login = async () => {
-		try {
-			const response = await axios.post(
-				`${import.meta.env.VITE_SERVER_URL}/auth/login`,
-				{
-					email,
-					password,
-				}
-			);
-			localStorage.setItem("token", response.data.token);
-			localStorage.setItem("user_id", response.data.user_id);
-			setRedirect(true);
-		} catch (err: any) {
-			console.log(err.response.data);
-			setAlert(err.response.data.message, "error");
-		}
-	};
 
 	return (
 		<div className="signup-container">
@@ -59,7 +37,7 @@ const Login = () => {
 			<button
 				className="action-btn btn-dark"
 				style={{ marginTop: "10px" }}
-				onClick={login}
+				onClick={() => login_user(email, password, setRedirect)}
 			>
 				Login
 			</button>

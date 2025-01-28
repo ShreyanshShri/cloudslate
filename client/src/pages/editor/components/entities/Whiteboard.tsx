@@ -59,14 +59,25 @@ const Whiteboard = ({ index, snapshot }: props) => {
 				}
 			>
 				{snapshot ? (
-					<Tldraw snapshot={snapshot} inferDarkMode>
+					<Tldraw
+						snapshot={snapshot}
+						onMount={(editor: any) => {
+							editor.user.updateUserPreferences({ edgeScrollSpeed: 0 });
+						}}
+						inferDarkMode
+					>
 						<SaveButton save={save} setSave={setSave} index={index} />
 						{downloadCanvas && (
 							<DownloadCanvas setDownloadCanvas={setDownloadCanvas} />
 						)}
 					</Tldraw>
 				) : (
-					<Tldraw inferDarkMode>
+					<Tldraw
+						onMount={(editor: any) => {
+							editor.user.updateUserPreferences({ edgeScrollSpeed: 0 });
+						}}
+						inferDarkMode
+					>
 						<SaveButton save={save} setSave={setSave} index={index} />
 						{downloadCanvas && (
 							<DownloadCanvas setDownloadCanvas={setDownloadCanvas} />

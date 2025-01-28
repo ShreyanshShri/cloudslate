@@ -18,6 +18,7 @@ type props = {
 	createdAt?: Date;
 	confirmDeleteFile?: Function;
 	unBookmark?: Function;
+	setDeleteData?: any;
 };
 
 const FileListCard = ({
@@ -28,6 +29,7 @@ const FileListCard = ({
 	createdAt,
 	confirmDeleteFile,
 	unBookmark,
+	setDeleteData,
 }: props) => {
 	const setAlert = useAlertStore((state: alertStoreType) => state.setAlert);
 
@@ -63,7 +65,7 @@ const FileListCard = ({
 				{confirmDeleteFile && (
 					<FontAwesomeIcon
 						icon={faTrash}
-						onClick={() => confirmDeleteFile(id, index)}
+						onClick={() => confirmDeleteFile(id, index, setDeleteData)}
 						className="file-list-card-icon delete-icon"
 						title="Delete this File"
 					/>

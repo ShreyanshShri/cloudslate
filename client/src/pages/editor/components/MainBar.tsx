@@ -14,6 +14,7 @@ import Whiteboard from "./entities/Whiteboard";
 
 function MainBar() {
 	const [redirect_url_id, setRedirect] = useState<string>("");
+	const [scrolling, setScrolling] = useState<boolean>(false);
 	// const [hasWriteAccess, setHasWriteAccess] = useState<boolean | null>(null);
 	// const user_id = localStorage.getItem("user_id");
 	// 		let has_access = false;
@@ -74,8 +75,20 @@ function MainBar() {
 		}
 	};
 
+	const showScroll = () => {
+		setScrolling(true);
+		setTimeout(() => {
+			setScrolling(false);
+		}, 1000);
+	};
+
 	return (
-		<div id="main-bar">
+		<div
+			id="main-bar"
+			className={scrolling ? "scroll" : "scroll scroll-hide"}
+			// className="scroll"
+			onScroll={showScroll}
+		>
 			{redirect_url_id !== "" && <Navigate to={`/editor/${redirect_url_id}`} />}
 			{file.entities.map((en: any, index: number) => {
 				if (en.type === "textarea") {

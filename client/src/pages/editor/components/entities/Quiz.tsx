@@ -2,6 +2,11 @@ import { useState } from "react";
 import Controls from "./utils/Controls";
 import OptionsDiv from "./utils/OptionsDiv";
 
+import {
+	updateCurrentOption,
+	submitAnswer,
+} from "../../component_functions/entities/quiz";
+
 type option = {
 	text: string;
 	isCorrect: boolean;
@@ -23,39 +28,12 @@ const Quiz = ({ data, index }: props) => {
 	const [turnGreen, setTurnGreen] = useState(-1);
 	const [turnRed, setTurnRed] = useState(-1);
 
-	const updateCurrentOption = (index: number) => {
-		setOptionsList((prev: Array<option>) => {
-			let temp = prev.map((opt: option, i: number) => {
-				if (i === index) {
-					return { text: opt.text, isCorrect: true };
-				}
-				return { text: opt.text, isCorrect: false };
-			});
-			return [...temp];
-		});
-		setCurrentAnsIndex(index);
-	};
-
-	const submitAnswer = () => {
-		if (currentAnsIndex === -1) return alert("Please select an option!");
-		if (currentAnsIndex === data.correctAnsIndex) {
-			setTurnGreen(currentAnsIndex);
-			setTurnRed(-1);
-		} else {
-			setTurnGreen(data.correctAnsIndex);
-			setTurnRed(currentAnsIndex);
-		}
-	};
-
 	return (
 		<div className="entity-wrapper mb-2">
 			<div className="entity-top-bar">
 				<div className="entity-title">Quiz</div>
 				<Controls index={index} />
-				<div className="entity-tools" style={{ width: "60px" }}>
-					{/* <span className="control-btns" onClick={saveState}><FontAwesomeIcon icon={ faLock } /></span>
-                <span className="control-btns" onClick={takeScreenShot}><FontAwesomeIcon icon={ faCameraRetro } /></span> */}
-				</div>
+				<div className="entity-tools" style={{ width: "60px" }}></div>
 			</div>
 			<div className="quiz-body">
 				<p className="quiz-question">{data.question}</p>
@@ -66,12 +44,19 @@ const Quiz = ({ data, index }: props) => {
 							index={index}
 							data={opt}
 							updateCurrentOption={updateCurrentOption}
+							setCurrentAnsIndex={setCurrentAnsIndex}
+							setOptionsList={setOptionsList}
 							isGreen={turnGreen === index}
 							isRed={turnRed === index}
 						/>
 					))}
 				</div>
-				<button onClick={submitAnswer} className="quiz-submit">
+				<button
+					onClick={() =>
+						submitAnswer(currentAnsIndex, setTurnGreen, setTurnRed, data)
+					}
+					className="quiz-submit"
+				>
 					Submit
 				</button>
 			</div>
