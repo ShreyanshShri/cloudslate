@@ -1,5 +1,5 @@
 import axios from "axios";
-import useAlertStore from "../stores/AlertStore";
+import useAlertStore from "../../stores/AlertStore";
 
 const setAlert = useAlertStore.getState().setAlert;
 
@@ -15,7 +15,7 @@ const register = async (
 ): Promise<return_type> => {
 	try {
 		const response = await axios.post(
-			`${import.meta.env.VITE_SERVER_URL}/auth/register`,
+			`${import.meta.env.VITE_HTTP_URL}/auth/register`,
 			{
 				username,
 				email,
@@ -38,7 +38,7 @@ const register = async (
 const login = async (email: string, password: string): Promise<return_type> => {
 	try {
 		const response = await axios.post(
-			`${import.meta.env.VITE_SERVER_URL}/auth/login`,
+			`${import.meta.env.VITE_HTTP_URL}/auth/login`,
 			{
 				email,
 				password,
@@ -60,7 +60,7 @@ const login = async (email: string, password: string): Promise<return_type> => {
 const getUser = async (): Promise<return_type> => {
 	try {
 		const response = await axios.get(
-			`${import.meta.env.VITE_SERVER_URL}/auth/get`,
+			`${import.meta.env.VITE_HTTP_URL}/auth/get`,
 			{
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -88,9 +88,7 @@ const addRemoveBookmark = async (
 ): Promise<return_type> => {
 	try {
 		const response = await axios.post(
-			`${
-				import.meta.env.VITE_SERVER_URL
-			}/auth/${action}-bookmark?id=${file_id}`,
+			`${import.meta.env.VITE_HTTP_URL}/auth/${action}-bookmark?id=${file_id}`,
 			{},
 			{
 				headers: {
@@ -115,7 +113,7 @@ const addRemoveBookmark = async (
 const getBookmarkStatus = async (file_id: string): Promise<return_type> => {
 	try {
 		const response = await axios.get(
-			`${import.meta.env.VITE_SERVER_URL}/auth/check-bookmark?id=${file_id}`,
+			`${import.meta.env.VITE_HTTP_URL}/auth/check-bookmark?id=${file_id}`,
 			{
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("token")}`,

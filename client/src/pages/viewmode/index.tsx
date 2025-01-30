@@ -65,7 +65,7 @@ const ViewPage = () => {
 	const fetchFileData = async () => {
 		try {
 			const response = await axios.get(
-				`${import.meta.env.VITE_SERVER_URL}/editor/get?id=${id}`,
+				`${import.meta.env.VITE_HTTP_URL}/editor/get?id=${id}`,
 				{
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("token")}`,

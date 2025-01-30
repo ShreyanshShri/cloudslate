@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useSpeechRecognition } from "react-speech-recognition";
+import { useState } from "react";
+// import { useSpeechRecognition } from "react-speech-recognition";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip, faMicrophone } from "@fortawesome/free-solid-svg-icons";
 
 import {
-	handleMicChange,
+	// handleMicChange,
 	convertToText,
 	handleInputChange,
 } from "../../component_functions/entities/textEditor";
@@ -27,20 +27,20 @@ const TextEditor = ({ index }: props) => {
 	const text = useFileStore((state: any) => state.file?.entities[index]?.data);
 	const setTextareaText = useFileStore((state: any) => state.setTextareaText);
 
-	const {
-		transcript,
-		listening,
-		// resetTranscript,
-		browserSupportsSpeechRecognition,
-	} = useSpeechRecognition();
+	// const {
+	// 	transcript,
+	// 	listening,
+	// 	// resetTranscript,
+	// 	browserSupportsSpeechRecognition,
+	// } = useSpeechRecognition();
 
-	if (!browserSupportsSpeechRecognition) {
-		return <span>Browser doesnt support speech recognition.</span>;
-	}
+	// if (!browserSupportsSpeechRecognition) {
+	// 	return <span>Browser doesnt support speech recognition.</span>;
+	// }
 
-	useEffect(() => {
-		// setTextareaText(index, transcript);
-	}, [transcript]);
+	// useEffect(() => {
+	// 	// setTextareaText(index, transcript);
+	// }, [transcript]);
 
 	return (
 		<div className="entity-wrapper mb-2">
@@ -75,7 +75,7 @@ const TextEditor = ({ index }: props) => {
 					<div className="mic-wrapper">
 						<span
 							className="control-btns mic-btn"
-							onClick={() => handleMicChange(listening, SpeechRecognition)}
+							// onClick={() => handleMicChange(listening, SpeechRecognition)}
 						>
 							<FontAwesomeIcon icon={faMicrophone} />
 						</span>

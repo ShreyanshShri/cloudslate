@@ -1,4 +1,4 @@
-import { login } from "../../../api_calls/userApiCalls";
+import { login } from "../../../utils/api_calls/userApiCalls";
 
 export const login_user = async (
 	email: string,

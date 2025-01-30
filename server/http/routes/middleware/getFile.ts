@@ -13,7 +13,6 @@ interface Req extends Request {
 export const getFile = async (req: any, res: any, next: any): Promise<any> => {
 	console.log("Reached: getFile");
 	const file_id = req.query.id;
-
 	// verify if id is correct
 	if (file_id === "" || file_id === undefined || file_id === null) {
 		res.status(400).json({

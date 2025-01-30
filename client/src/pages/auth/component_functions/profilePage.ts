@@ -1,5 +1,8 @@
 import { deleteFile } from "../../common/utils/apiCalls";
-import { getUser, addRemoveBookmark } from "../../../api_calls/userApiCalls";
+import {
+	getUser,
+	addRemoveBookmark,
+} from "../../../utils/api_calls/userApiCalls";
 import { file_type } from "../../../types/fileTypes";
 import useAlertStore from "../../../stores/AlertStore";
 import useUserStore from "../../../stores/UserStore";

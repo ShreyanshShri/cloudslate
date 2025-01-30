@@ -1,4 +1,4 @@
-import { register } from "../../../api_calls/userApiCalls";
+import { register } from "../../../utils/api_calls/userApiCalls";
 
 export const register_user = async (
 	username: string,

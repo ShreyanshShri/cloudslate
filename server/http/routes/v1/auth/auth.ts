@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 import User from "../../../models/User";
 import { getUserId } from "../../middleware/getUserId";
+import { requireUser } from "../../middleware/requireUser";
 import { getFile } from "../../middleware/getFile";
 
 const router = express.Router();
@@ -73,6 +74,14 @@ router.post("/login", async (req, res) => {
 		});
 		return;
 	}
+});
+
+router.get("/verify", getUserId, requireUser, (req: any, res: any) => {
+	res.status(200).json({
+		message: "User verified",
+		user_id: req.user._id,
+	});
+	return;
 });
 
 router.get("/get", getUserId, async (req: any, res: any) => {

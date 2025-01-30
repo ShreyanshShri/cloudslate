@@ -11,6 +11,7 @@ import { validateReadAccess } from "../../middleware/validateReadAccess";
 import { validateReadWriteAccess } from "../../middleware/validateReadWriteAccess";
 
 import { saveEntities, deleteEntities } from "./utils/entityOperations";
+import { requireUser } from "../../middleware/requireUser";
 
 const router = express.Router();
 
@@ -62,6 +63,33 @@ router.get(
 		res.status(200).json({
 			message: "successfully recieved the file",
 			file,
+		});
+	}
+);
+
+router.get(
+	"/verify-read-access",
+	getUserId,
+	requireUser,
+	getFile,
+	validateReadAccess,
+	(req: any, res: any) => {
+		console.log("=========Reached get editor/verify-read-access=========");
+		res.status(200).json({
+			message: "Read Access Granted",
+		});
+	}
+);
+router.get(
+	"verify-write-access",
+	getUserId,
+	requireUser,
+	getFile,
+	validateReadAccess,
+	validateReadWriteAccess,
+	(req: any, res: any) => {
+		res.status(200).json({
+			message: "Write Access Granted",
 		});
 	}
 );

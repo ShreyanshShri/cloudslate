@@ -262,6 +262,7 @@ input:checked + .slider:before {
 	background: var(--base-color);
 	border: 1px solid rgba(255, 255, 255, 0.1);
 	border-radius: 4px;
+	box-sizing: border-box;
 }
 
 .settings-btn {

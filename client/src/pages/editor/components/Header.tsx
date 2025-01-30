@@ -13,7 +13,7 @@ import useSettingsStore from "../../../stores/SettingsStore";
 import {
 	addRemoveBookmark,
 	getBookmarkStatus,
-} from "../../../api_calls/userApiCalls";
+} from "../../../utils/api_calls/userApiCalls";
 
 import "./layout.css";
 

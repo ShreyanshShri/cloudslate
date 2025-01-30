@@ -16,7 +16,7 @@ const addRemoveContributor = async (
 	try {
 		const response = await axios.put(
 			`${
-				import.meta.env.VITE_SERVER_URL
+				import.meta.env.VITE_HTTP_URL
 			}/editor/edit/${type}-contributor?id=${file_id}`,
 			{
 				username,

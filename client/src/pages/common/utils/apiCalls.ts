@@ -9,7 +9,7 @@ const changeVisibility = async (id: string, isPublic: boolean) => {
 
 	try {
 		const response = await axios.put(
-			`${import.meta.env.VITE_SERVER_URL}/editor/edit/set-visibility?id=${id}`,
+			`${import.meta.env.VITE_HTTP_URL}/editor/edit/set-visibility?id=${id}`,
 			{
 				isPublic,
 			},
@@ -32,7 +32,7 @@ const changeTitle = async (id: string, title: string) => {
 	if (title === "") return;
 	try {
 		const response = await axios.put(
-			`${import.meta.env.VITE_SERVER_URL}/editor/edit/set-title?id=${id}`,
+			`${import.meta.env.VITE_HTTP_URL}/editor/edit/set-title?id=${id}`,
 			{
 				title,
 			},
@@ -55,7 +55,7 @@ const changeDesc = async (id: string, desc: string) => {
 	if (desc === "") return;
 	try {
 		const response = await axios.put(
-			`${import.meta.env.VITE_SERVER_URL}/editor/edit/set-desc?id=${id}`,
+			`${import.meta.env.VITE_HTTP_URL}/editor/edit/set-desc?id=${id}`,
 			{
 				desc,
 			},
@@ -78,7 +78,7 @@ const deleteFile = async (id: string): Promise<boolean> => {
 
 	try {
 		const response = await axios.delete(
-			`${import.meta.env.VITE_SERVER_URL}/editor/delete?id=${id}`,
+			`${import.meta.env.VITE_HTTP_URL}/editor/delete?id=${id}`,
 			{
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("token")}`,

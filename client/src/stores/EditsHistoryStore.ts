@@ -64,7 +64,7 @@ const hardSave = async (file_id: string) => {
 	const clearEntity = useEditHistoryStore.getState().clearEntity;
 	try {
 		const response = await axios.put(
-			`${import.meta.env.VITE_SERVER_URL}/editor/edit/all?id=${file_id}`,
+			`${import.meta.env.VITE_HTTP_URL}/editor/edit/all?id=${file_id}`,
 			{
 				entities,
 			},

@@ -20,8 +20,8 @@ type entity_type = {
 
 type file_type = {
 	_id?: any;
-	admin: user_type | string;
-	contributors: [user_type] | [string];
+	admin: user_type;
+	contributors: [user_type];
 	createdAt: Date;
 	public: boolean;
 	title: string;
