@@ -9,9 +9,9 @@ import { getFile } from "../../middleware/getFile";
 import { getUserId } from "../../middleware/getUserId";
 import { validateReadAccess } from "../../middleware/validateReadAccess";
 import { validateReadWriteAccess } from "../../middleware/validateReadWriteAccess";
+import { requireUser } from "../../middleware/requireUser";
 
 import { saveEntities, deleteEntities } from "./utils/entityOperations";
-import { requireUser } from "../../middleware/requireUser";
 
 const router = express.Router();
 
